@@ -94,3 +94,6 @@ if __name__ == '__main__':
         except:
             traceback.print_exc()
     os.chdir(root_path)
+    with open('README.md', 'w', encoding='utf8') as f:
+        f.write('# pocsuite3 POC统计\n| 文件类型 | 数量 |\n| :----:| :----: |\n| .py | {} |\n|\n'.format(
+            len([file for file in os.listdir('poc') if file.endswith('.go')])))
