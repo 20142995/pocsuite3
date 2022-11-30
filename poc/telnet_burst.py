@@ -1,7 +1,7 @@
 """
 If you have issues about development, please read:
 https://github.com/knownsec/pocsuite3/blob/master/docs/CODING.md
-for more about information, plz visit http://pocsuite.org
+for more about information, plz visit https://pocsuite.org
 """
 import itertools
 import queue
@@ -29,7 +29,7 @@ class DemoPOC(POCBase):
     desc = '''telnet 存在弱密码，导致攻击者可登录主机进行恶意操作'''
     samples = ['']
     category = POC_CATEGORY.TOOLS.CRACK
-    protocol = POC_CATEGORY.PROTOCOL.TELENT
+    protocol = POC_CATEGORY.PROTOCOL.TELNET
 
     def _verify(self):
         result = {}
