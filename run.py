@@ -148,7 +148,6 @@ if __name__ == '__main__':
     print(f'[+] html_urls: {len(html_urls)}')
     # 克隆项目代码并复制poc
     for url in html_urls:
-        if '20142995' in url:continue
         print(url)
         try:
             repo_path = clone_repo(url)
