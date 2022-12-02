@@ -171,7 +171,7 @@ if __name__ == '__main__':
                                     poc_names[file] = 0
                                 else:
                                     shutil.copyfile(
-                                        file_path[:-3]+'_1.py', os.path.join(root_path, 'poc', file))
+                                        file_path, os.path.join(root_path, 'poc', file[:-3]+'_1.py'))
                                     poc_names[file[:-3]+'_1.py'] = 0
                     except:
                         traceback.print_exc()
