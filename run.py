@@ -53,7 +53,7 @@ class GithubClient:
             return {}
 
     def search_repositories(self, keyword, page=1, per_page=10):
-        '''搜索代码'''
+        '''搜索项目'''
         try:
             time.sleep(2)
             data = {'q': keyword, 'sort': 'updated',
@@ -104,6 +104,7 @@ class GithubClient:
         except:
             pass
 
+
 def clone_repo(url):
     temp_dir = tempfile.TemporaryDirectory().name
     if not os.path.exists(temp_dir):
@@ -113,8 +114,6 @@ def clone_repo(url):
     return os.path.join(temp_dir, url[19:].split('/', 1)[1])
 
 
-
-
 if __name__ == '__main__':
     # 项目主页
     html_urls = []
@@ -122,23 +121,27 @@ if __name__ == '__main__':
     # 搜索项目
     try:
         rs = gc.search_repositories("pocsuite3", page=1, per_page=100)
-        html_urls += [item['html_url'] for item in rs.get('items', []) if item.get('html_url')]
+        html_urls += [item['html_url']
+                      for item in rs.get('items', []) if item.get('html_url')]
     except:
         traceback.print_exc()
     # 本地poc
     root_path = os.path.dirname(os.path.abspath(__file__))
     poc_hashs = {}
     poc_names = {}
-    for file in os.listdir(os.path.join(root_path,'poc')):
+    for file in os.listdir(os.path.join(root_path, 'poc')):
         if not file.endswith('.py'):
             continue
-        poc_hashs[hashlib.md5(open(os.path.join(root_path,'poc',file),'rb').read()).hexdigest()] = 0
+        poc_hashs[hashlib.md5(
+            open(os.path.join(root_path, 'poc', file), 'rb').read()).hexdigest()] = 0
         poc_names[file] = 0
 
     # 搜索代码,获取项目主页
     try:
-        rs = gc.search_code("pocsuite3.api+language:Python", page=1, per_page=100)
-        html_urls += [item['repository']['html_url'] for item in rs.get('items', []) if item.get('repository', {}).get('html_url')]
+        rs = gc.search_code("pocsuite3.api+language:Python",
+                            page=1, per_page=100)
+        html_urls += [item['repository']['html_url']
+                      for item in rs.get('items', []) if item.get('repository', {}).get('html_url')]
     except:
         traceback.print_exc()
     html_urls = set(html_urls)
@@ -159,13 +162,16 @@ if __name__ == '__main__':
                         with open(file_path, 'r', encoding='utf8') as f:
                             content = f.read()
                         if 'from pocsuite3.api' in content and 'register_poc' in content:
-                            md5 = hashlib.md5(open(file_path,'rb').read()).hexdigest()
+                            md5 = hashlib.md5(
+                                open(file_path, 'rb').read()).hexdigest()
                             if md5 not in poc_hashs:
                                 if file not in poc_names:
-                                    shutil.copyfile(file_path, os.path.join(root_path, 'poc', file))
+                                    shutil.copyfile(file_path, os.path.join(
+                                        root_path, 'poc', file))
                                     poc_names[file] = 0
                                 else:
-                                    shutil.copyfile(file_path[:-3]+'_1.py', os.path.join(root_path, 'poc', file))
+                                    shutil.copyfile(
+                                        file_path[:-3]+'_1.py', os.path.join(root_path, 'poc', file))
                                     poc_names[file[:-3]+'_1.py'] = 0
                     except:
                         traceback.print_exc()
