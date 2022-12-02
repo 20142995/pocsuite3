@@ -167,7 +167,6 @@ if __name__ == '__main__':
                                 shutil.copyfile(file_path, os.path.join(
                                     root_path, 'poc', file))
                                 poc_hashs[md5] = 0
-
                     except:
                         traceback.print_exc()
         except:
