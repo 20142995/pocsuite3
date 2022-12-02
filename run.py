@@ -128,13 +128,11 @@ if __name__ == '__main__':
     # 本地poc
     root_path = os.path.dirname(os.path.abspath(__file__))
     poc_hashs = {}
-    poc_names = {}
     for file in os.listdir(os.path.join(root_path, 'poc')):
         if not file.endswith('.py'):
             continue
         poc_hashs[hashlib.md5(
             open(os.path.join(root_path, 'poc', file), 'rb').read()).hexdigest()] = 0
-        poc_names[file] = 0
 
     # 搜索代码,获取项目主页
     try:
@@ -146,6 +144,7 @@ if __name__ == '__main__':
         traceback.print_exc()
     html_urls = set(html_urls)
     print(f'[+] html_urls: {len(html_urls)}')
+
     # 克隆项目代码并复制poc
     for url in html_urls:
         print(url)
@@ -165,19 +164,16 @@ if __name__ == '__main__':
                             md5 = hashlib.md5(
                                 open(file_path, 'rb').read()).hexdigest()
                             if md5 not in poc_hashs:
-                                if file not in poc_names:
-                                    shutil.copyfile(file_path, os.path.join(
-                                        root_path, 'poc', file))
-                                    poc_names[file] = 0
-                                else:
-                                    shutil.copyfile(
-                                        file_path, os.path.join(root_path, 'poc', file[:-3]+'_1.py'))
-                                    poc_names[file[:-3]+'_1.py'] = 0
+                                shutil.copyfile(file_path, os.path.join(
+                                    root_path, 'poc', file))
+                                poc_hashs[md5] = 0
+
                     except:
                         traceback.print_exc()
         except:
             traceback.print_exc()
     os.chdir(root_path)
+
     with open('README.md', 'w', encoding='utf8') as f:
         f.write('# pocsuite3 POC统计\n| 文件类型 | 数量 |\n| :----:| :----: |\n| .py | {} |\n'.format(
             len([file for file in os.listdir('poc') if file.endswith('.py')])))
