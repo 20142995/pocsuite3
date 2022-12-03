@@ -8,6 +8,7 @@ import traceback
 import tempfile
 import shutil
 import hashlib
+import json
 
 requests.packages.urllib3.disable_warnings()
 
@@ -115,6 +116,18 @@ def clone_repo(url):
 
 
 if __name__ == '__main__':
+    # 更新历史
+    data = {}
+    data_file = 'data.json'
+    if os.path.exists(data_file):
+        try:
+            data = json.loads(open(data_file, 'r', encoding='utf8').read())
+        except:
+            with open(data_file, 'w', encoding='utf-8') as f:
+                json.dump(data, f, ensure_ascii=False, indent=4)
+    else:
+        with open(data_file, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
     # 项目主页
     html_urls = []
     gc = GithubClient(os.getenv('GH_TOKEN'))
@@ -125,14 +138,8 @@ if __name__ == '__main__':
                       for item in rs.get('items', []) if item.get('html_url')]
     except:
         traceback.print_exc()
-    # 本地poc
+    # 本地路径
     root_path = os.path.dirname(os.path.abspath(__file__))
-    poc_hashs = {}
-    for file in os.listdir(os.path.join(root_path, 'poc')):
-        if not file.endswith('.py'):
-            continue
-        poc_hashs[hashlib.md5(
-            open(os.path.join(root_path, 'poc', file), 'rb').read()).hexdigest()] = 0
 
     # 搜索代码,获取项目主页
     try:
@@ -163,16 +170,36 @@ if __name__ == '__main__':
                         if 'from pocsuite3.api' in content and 'register_poc' in content:
                             md5 = hashlib.md5(
                                 open(file_path, 'rb').read()).hexdigest()
-                            if md5 not in poc_hashs:
+                            if md5 not in data:
                                 shutil.copyfile(file_path, os.path.join(
                                     root_path, 'poc', file))
-                                poc_hashs[md5] = 0
+                                data[md5] = {'name': file, 'from': url, "up_time": time.strftime(
+                                    "%Y-%m-%d %H:%M:%S")}
                     except:
                         traceback.print_exc()
         except:
             traceback.print_exc()
     os.chdir(root_path)
-
+    # 清理无效data
+    md5s = []
+    for file in os.listdir(os.path.join(root_path, 'poc')):
+        if not file.endswith('.py'):
+            continue
+        md5 = hashlib.md5(
+            open(os.path.join(root_path, 'poc', file), 'rb').read()).hexdigest()
+        md5s.append(md5)
+    for md5 in [md5 for md5 in data.keys() if md5 not in md5s]:
+        del data[md5]
+    # 写入README.md
+    readme_md = '## pocsuite3 POC统计\n| 文件类型 | 数量 |\n| :----:| :----: |\n| .py | {} |\n'.format(
+        len(data.keys()))
+    readme_md += '## 更新记录\n| 文件名称 | 收录时间 |\n| :----| :---- |\n'
+    _data = sorted(data.values(), key=lambda x: x['up_time'], reverse=True)
+    for item in _data:
+        readme_md += '| [{}]({}) | {} |\n'.format(item['name'],
+                                                  item['from'], item['up_time'])
     with open('README.md', 'w', encoding='utf8') as f:
-        f.write('# pocsuite3 POC统计\n| 文件类型 | 数量 |\n| :----:| :----: |\n| .py | {} |\n'.format(
-            len([file for file in os.listdir('poc') if file.endswith('.py')])))
+        f.write(readme_md)
+    # 写入data
+    with open(data_file, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)
