@@ -9,6 +9,7 @@ import tempfile
 import shutil
 import hashlib
 import json
+import re
 
 requests.packages.urllib3.disable_warnings()
 
@@ -114,6 +115,20 @@ def clone_repo(url):
     os.system('git clone {}'.format(url))
     return os.path.join(temp_dir, url[19:].split('/', 1)[1])
 
+def chr_len2(s):
+    return int((len(s.encode('utf-8')) - len(s))/2 + len(s))
+
+
+def parse(x, y):
+    s = ''
+    n = 0
+    for i in re.sub('\s{2,}', '', x if x else ''):
+        n += chr_len2(i)
+        if n >= y:
+            s += '<br>'
+            n = 0
+        s += i
+    return s
 
 if __name__ == '__main__':
     # 更新历史
@@ -196,7 +211,7 @@ if __name__ == '__main__':
     readme_md += '### 收集记录\n| 文件名称 | 收录时间 |\n| :----| :---- |\n'
     _data = sorted(data.values(), key=lambda x: x['up_time'], reverse=True)
     for item in _data:
-        readme_md += '| [{}]({}) | {} |\n'.format(item['name'],
+        readme_md += '| [{}]({}) | {} |\n'.format(parse(item['name'], 50),
                                                   item['from'], item['up_time'])
     with open('README.md', 'w', encoding='utf8') as f:
         f.write(readme_md)
