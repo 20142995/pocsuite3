@@ -183,7 +183,7 @@ if __name__ == '__main__':
     # 清理无效data
     md5s = []
     for file in os.listdir(os.path.join(root_path, 'poc')):
-        if not file.endswith('.py') and file != 'run.py':
+        if not file.endswith('.py') and file == 'run.py':
             continue
         md5 = hashlib.md5(
             open(os.path.join(root_path, 'poc', file), 'rb').read()).hexdigest()
