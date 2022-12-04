@@ -8,7 +8,6 @@ from pocsuite3.api import POC_CATEGORY, VUL_TYPE
 
 req.packages.urllib3.disable_warnings()
 
-
 class TestPOC(POCBase):
     vulID = ''
     version = '1.0'
