@@ -10,10 +10,10 @@ from pocsuite3.api import POC_CATEGORY, VUL_TYPE
 class TestPOC(POCBase):
     vulID = '0'
     version = '1.0'
-    author = 'Pontusec'
+    author = 'hancool'
     vulDate = '2018-12-25'
-    createDate = '2022-7-14'
-    updateDate = '2022-7-14'
+    createDate = '2018-12-25'
+    updateDate = '2018-12-25'
     references = ['', ]
     name = 'Apache ZooKeeper unauthorized access'
     appPowerLink = ''
