@@ -51,8 +51,7 @@ class DemoPOC(POCBase):
         try:
             full_url = self.url.strip() + '/script'
             response = requests.get(full_url, timeout=5, verify=False)
-            # 通关code值判断是否未授权
-            if response.status_code == 200:
+            if response.status_code == 200 and 'jenkins' in response.text:
                 result.append(full_url)
         except Exception as e:
              print(e)
