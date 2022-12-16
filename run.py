@@ -106,6 +106,10 @@ class GithubClient:
         except:
             pass
 
+def _md5(file):
+    with open(file,'rb') as f:
+        s = re.sub('\s+','',f.read().decode('utf8',errors='ignore'))
+        return hashlib.md5(s.encode('utf8')).hexdigest()
 
 def clone_repo(url):
     temp_dir = tempfile.TemporaryDirectory().name
@@ -183,8 +187,7 @@ if __name__ == '__main__':
                         with open(file_path, 'r', encoding='utf8') as f:
                             content = f.read()
                         if 'from pocsuite3.api' in content and 'register_poc' in content:
-                            md5 = hashlib.md5(
-                                open(file_path, 'rb').read()).hexdigest()
+                            md5 = _md5(file_path)
                             if md5 not in data:
                                 shutil.copyfile(file_path, os.path.join(
                                     root_path, 'poc', file))
@@ -200,8 +203,7 @@ if __name__ == '__main__':
     for file in os.listdir(os.path.join(root_path, 'poc')):
         if not file.endswith('.py') and file in ['run.py','__init__.py']:
             continue
-        md5 = hashlib.md5(
-            open(os.path.join(root_path, 'poc', file), 'rb').read()).hexdigest()
+        md5 = _md5(os.path.join(root_path, 'poc', file))
         md5s.append(md5)
     for md5 in [md5 for md5 in data.keys() if md5 not in md5s]:
         del data[md5]
