@@ -1,14 +1,14 @@
 """
 If you have issues about development, please read:
 https://github.com/knownsec/pocsuite3/blob/master/docs/CODING.md
-for more about information, plz visit http://pocsuite.org
+for more about information, plz visit https://pocsuite.org
 """
 
 import re
 from collections import OrderedDict
 from urllib.parse import urljoin
 
-from pocsuite3.api import Output, POCBase, register_poc, requests, logger, POC_CATEGORY, OptDict
+from pocsuite3.api import Output, POCBase, register_poc, requests, logger, POC_CATEGORY, OptDict, VUL_TYPE
 from pocsuite3.api import get_listener_ip, get_listener_port
 from pocsuite3.lib.utils import random_str
 
@@ -23,9 +23,9 @@ class DemoPOC(POCBase):
     references = ['https://www.seebug.org/vuldb/ssvid-97009']
     name = 'Weblogic < 10.3.6 wls-wsat XMLDecoder 反序列化漏洞（CVE-2017-10271）'
     appPowerLink = ''
-    appName = 'ECSHOP'
+    appName = 'Weblogic'
     appVersion = '< 10.3.6'
-    vulType = 'unserialization'
+    vulType = VUL_TYPE.CODE_EXECUTION
     desc = '''
         Weblogic的WLS Security组件对外提供webservice服务，其中使用了XMLDecoder来解析用户传入的XML数据，
         在解析的过程中出现反序列化漏洞，导致可执行任意命令。
