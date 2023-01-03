@@ -1,36 +1,38 @@
-## pocsuite3 (共279个) 最近一次检查时间 2023-01-02 03:10:48
+## pocsuite3 (共281个) 最近一次检查时间 2023-01-03 03:11:03
 ### 收集记录
 | 文件名称 | 收录时间 |
 | :----| :---- |
-| [__init__.py](https://github.com/trhacknon/pocsuite3) | 2023-01-02 03:10:45 |
-| [solr_all_readfile.py](https://github.com/Pontusec/pocsuite3) | 2023-01-02 03:10:44 |
-| [tomcat-ajp-ghostcat_all_lfi.py](https://github.com/Pontusec/pocsuite3) | 2023-01-02 03:10:44 |
-| [test_build_url.py](https://github.com/knownsec/pocsuite3) | 2023-01-02 03:10:38 |
-| [thinkphp_rce2.py](https://github.com/knownsec/pocsuite3) | 2023-01-02 03:10:38 |
-| [ftp_burst.py](https://github.com/knownsec/pocsuite3) | 2023-01-02 03:10:38 |
-| [telnet_burst.py](https://github.com/knownsec/pocsuite3) | 2023-01-02 03:10:38 |
-| [thinkphp_rce.py](https://github.com/sssyyynnngithub/mypocsuite3_test) | 2023-01-02 03:07:49 |
-| [CVE-2020-13937.py](https://github.com/mlxwlX/PocWrite_pocsuite3) | 2023-01-02 03:07:47 |
-| [CVE-2022-30525.py](https://github.com/mlxwlX/PocWrite_pocsuite3) | 2023-01-02 03:07:47 |
-| [CVE-2022-26134.py](https://github.com/mlxwlX/PocWrite_pocsuite3) | 2023-01-02 03:07:47 |
-| [CVE-2021-46422.py](https://github.com/mlxwlX/PocWrite_pocsuite3) | 2023-01-02 03:07:47 |
-| [ssh_burst.py](https://github.com/The-Cracker-Technology/pocsuite3) | 2023-01-02 03:07:45 |
-| [demo_poc.py](https://github.com/The-Cracker-Technology/pocsuite3) | 2023-01-02 03:07:45 |
-| [login_demo.py](https://github.com/Fangrn/pocsuite3) | 2023-01-02 03:07:42 |
-| [wd_nas_login_bypass_rce.py](https://github.com/Fangrn/pocsuite3) | 2023-01-02 03:07:42 |
-| [weblogic_cve_2017_10271_unserialization.py](https://github.com/Fangrn/pocsuite3) | 2023-01-02 03:07:42 |
+| [CVE-2020-13937.py](https://github.com/L1GH7/Vaultiris) | 2023-01-03 03:10:58 |
+| [CVE-2021-46422.py](https://github.com/Pontusec/pocsuite3) | 2023-01-03 03:08:14 |
+| [CVE-2022-26134.py](https://github.com/Pontusec/pocsuite3) | 2023-01-03 03:08:14 |
+| [__init__.py](https://github.com/knownsec/pocsuite3) | 2023-01-03 03:08:12 |
+| [Apache Druid LoadData 任意文件读取漏洞 CVE-2021-3<br>6749.py](https://github.com/wukong-bin/PeiQi0-PeiQi-WIKI-PocSuite3) | 2023-01-03 03:08:11 |
+| [Apache Druid sampler 远程代码执行漏洞 CVE-2021-25<br>646.py](https://github.com/wukong-bin/PeiQi0-PeiQi-WIKI-PocSuite3) | 2023-01-03 03:08:11 |
+| [Apache Flink 目录遍历漏洞 CVE-2020-17519.py](https://github.com/wukong-bin/PeiQi0-PeiQi-WIKI-PocSuite3) | 2023-01-03 03:08:11 |
+| [Apache ShenYu dashboardUser 账号密码泄漏漏洞 CVE-<br>2021-37580.py](https://github.com/wukong-bin/PeiQi0-PeiQi-WIKI-PocSuite3) | 2023-01-03 03:08:11 |
+| [Grafana plugins 任意文件读取漏洞 CVE-2021-43798.p<br>y](https://github.com/wukong-bin/PeiQi0-PeiQi-WIKI-PocSuite3) | 2023-01-03 03:08:11 |
+| [thinkphp_rce2.py](https://github.com/1derian/pocsuite3_pro) | 2023-01-03 03:08:10 |
+| [apollo_weak_passwd.py](https://github.com/1derian/pocsuite3_pro) | 2023-01-03 03:08:10 |
+| [thinkphp_rce.py](https://github.com/5l1v3r1/pocsuite3-1) | 2023-01-03 03:08:07 |
+| [ftp_burst.py](https://github.com/5l1v3r1/pocsuite3-1) | 2023-01-03 03:08:07 |
+| [telnet_burst.py](https://github.com/5l1v3r1/pocsuite3-1) | 2023-01-03 03:08:07 |
+| [ssh_burst.py](https://github.com/5l1v3r1/pocsuite3-1) | 2023-01-03 03:08:07 |
+| [demo_poc.py](https://github.com/begaad/pocsuite3-pocs) | 2023-01-03 03:08:06 |
+| [CVE-2022-30525.py](https://github.com/begaad/pocsuite3-pocs) | 2023-01-03 03:08:06 |
+| [test_build_url.py](https://github.com/trhacknon/pocsuite3) | 2023-01-03 03:08:01 |
+| [wd_nas_login_bypass_rce.py](https://github.com/trhacknon/pocsuite3) | 2023-01-03 03:08:01 |
+| [weblogic_cve_2017_10271_unserialization.py](https://github.com/trhacknon/pocsuite3) | 2023-01-03 03:08:01 |
+| [node_red_unauthorized_rce.py](https://github.com/trhacknon/pocsuite3) | 2023-01-03 03:08:01 |
+| [redis_unauthorized_access.py](https://github.com/trhacknon/pocsuite3) | 2023-01-03 03:08:01 |
+| [ecshop_rce.py](https://github.com/trhacknon/pocsuite3) | 2023-01-03 03:08:01 |
+| [libssh_auth_bypass.py](https://github.com/trhacknon/pocsuite3) | 2023-01-03 03:08:01 |
+| [drupalgeddon2.py](https://github.com/trhacknon/pocsuite3) | 2023-01-03 03:08:01 |
+| [glassfish_rce.py](https://github.com/vikingsword/Scanner) | 2023-01-03 03:07:58 |
+| [login_demo.py](https://github.com/xx-zhang/pocsuite3-pocs) | 2023-01-03 03:07:58 |
+| [solr_all_readfile.py](https://github.com/xx-zhang/pocsuite3-pocs) | 2023-01-03 03:07:58 |
+| [tomcat-ajp-ghostcat_all_lfi.py](https://github.com/xx-zhang/pocsuite3-pocs) | 2023-01-03 03:07:58 |
+| [WEB_Confluence_path_traversal.py](https://github.com/xx-zhang/pocsuite3-pocs) | 2023-01-03 03:07:58 |
 | [20190404_WEB_Confluence_path_traversal.py](https://github.com/Fangrn/pocsuite3) | 2023-01-02 03:07:42 |
-| [node_red_unauthorized_rce.py](https://github.com/Fangrn/pocsuite3) | 2023-01-02 03:07:42 |
-| [redis_unauthorized_access.py](https://github.com/Fangrn/pocsuite3) | 2023-01-02 03:07:42 |
-| [ecshop_rce.py](https://github.com/Fangrn/pocsuite3) | 2023-01-02 03:07:42 |
-| [libssh_auth_bypass.py](https://github.com/Fangrn/pocsuite3) | 2023-01-02 03:07:42 |
-| [drupalgeddon2.py](https://github.com/Fangrn/pocsuite3) | 2023-01-02 03:07:42 |
-| [apollo_weak_passwd.py](https://github.com/WZY3641572/pocsuite3) | 2023-01-02 03:07:41 |
-| [Apache Druid LoadData 任意文件读取漏洞 CVE-2021-3<br>6749.py](https://github.com/WZY3641572/pocsuite3) | 2023-01-02 03:07:41 |
-| [Apache Druid sampler 远程代码执行漏洞 CVE-2021-25<br>646.py](https://github.com/WZY3641572/pocsuite3) | 2023-01-02 03:07:41 |
-| [Apache Flink 目录遍历漏洞 CVE-2020-17519.py](https://github.com/WZY3641572/pocsuite3) | 2023-01-02 03:07:41 |
-| [Apache ShenYu dashboardUser 账号密码泄漏漏洞 CVE-<br>2021-37580.py](https://github.com/WZY3641572/pocsuite3) | 2023-01-02 03:07:41 |
-| [Grafana plugins 任意文件读取漏洞 CVE-2021-43798.p<br>y](https://github.com/WZY3641572/pocsuite3) | 2023-01-02 03:07:41 |
 | [Cacti_CVE_2022_46169.py](https://github.com/rockmelodies/exp_code_generator) | 2022-12-29 03:11:29 |
 | [CVE-2021-43287_GoCD_fileread_POC_EXP.py](https://github.com/L1GH7/Vaultiris) | 2022-12-20 03:11:00 |
 | [run.py](https://github.com/20142995/pocsuite3) | 2022-12-17 03:07:23 |
