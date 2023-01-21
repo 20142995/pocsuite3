@@ -38,7 +38,7 @@ class DemoPOC(POCBase):
             headers = {
                 "Content-Type": "application/x-www-form-urlencoded"
             }
-            r = requests.post(vul_url, data=data, headers=headers,timeout=5)
+            r = requests.post(vul_url, data=data, headers=headers)
 
             if flag in r.text:
                 return payload, data
