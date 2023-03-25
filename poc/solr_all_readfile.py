@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-# Author:V1ZkRA
-# Time:2021/4/13
+# Author:pontus
+# Time:2021/7/22
 
 # !/usr/bin/env python3
 # @File    : poc_shiro_rce_2019.py
