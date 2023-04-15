@@ -64,10 +64,9 @@ result_queue = queue.Queue()
 
 
 def get_word_list():
-    common_username = ('Administrator', 'administrator', 'telnet',
-                       'test', 'root', 'guest', 'admin', 'daemon', 'user')
-    with open(paths.WEAK_PASS) as f:
-        return itertools.product(common_username, f)
+    with open(paths.TELNET_USER) as username:
+        with open(paths.TELNET_PASS) as password:
+            return itertools.product(username, password)
 
 
 def port_check(host, port=23):
@@ -117,8 +116,8 @@ def task_init(host, port):
 def task_thread():
     while not task_queue.empty():
         host, port, username, password = task_queue.get()
-        logger.info('try burst {}:{} use username:{} password:{}'.format(
-            host, port, username, password))
+        # logger.info('try burst {}:{} use username:{} password:{}'.format(
+        #     host, port, username, password))
         if telnet_login(host, port, username, password):
             with task_queue.mutex:
                 task_queue.queue.clear()
@@ -127,11 +126,12 @@ def task_thread():
 
 def telnet_burst(host, port):
     if not port_check(host, port):
+        logger.warning("{}:{} is unreachable".format(host, port))
         return
 
     try:
         task_init(host, port)
-        run_threads(1, task_thread)
+        run_threads(4, task_thread)
     except Exception:
         pass
 
