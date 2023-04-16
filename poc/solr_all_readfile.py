@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-# Author:pontus
-# Time:2021/7/22
-
-# !/usr/bin/env python3
-# @File    : poc_shiro_rce_2019.py
-
 #!/usr/bin/env python
 # coding: utf-8
 from urllib.parse import urlparse,quote
