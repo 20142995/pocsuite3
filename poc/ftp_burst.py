@@ -65,9 +65,9 @@ result_queue = queue.Queue()
 
 
 def get_word_list():
-    with open(paths.FTP_USER) as username:
-        with open(paths.FTP_PASS) as password:
-            return itertools.product(username, password)
+    common_username = ('admin', 'ftp', 'test', 'root', 'guest', 'daemon', 'user')
+    with open(paths.WEAK_PASS) as f:
+        return itertools.product(common_username, f)
 
 
 def port_check(host, port=21):
@@ -108,8 +108,8 @@ def task_init(host, port):
 def task_thread():
     while not task_queue.empty():
         host, port, username, password = task_queue.get()
-        # logger.info('try burst {}:{} use username:{} password:{}'.format(
-        #     host, port, username, password))
+        logger.info('try burst {}:{} use username:{} password:{}'.format(
+            host, port, username, password))
         if ftp_login(host, port, username, password):
             with task_queue.mutex:
                 task_queue.queue.clear()
@@ -118,12 +118,11 @@ def task_thread():
 
 def ftp_burst(host, port):
     if not port_check(host, port):
-        logger.warning("{}:{} is unreachable".format(host, port))
         return
 
     if anonymous_login(host, port):
-        # logger.info('try burst {}:{} use username:{} password:{}'.format(
-        #     host, port, 'anonymous', '<empty>'))
+        logger.info('try burst {}:{} use username:{} password:{}'.format(
+            host, port, 'anonymous', '<empty>'))
         result_queue.put(('anonymous', '<empty>'))
         return
 

