@@ -1,11 +1,12 @@
 """
 If you have issues about development, please read:
 https://github.com/knownsec/pocsuite3/blob/master/docs/CODING.md
-for more about information, plz visit https://pocsuite.org
+for more about information, plz visit http://pocsuite.org
 """
 
 import socket
-from pocsuite3.api import POCBase, Output, register_poc, logger, POC_CATEGORY, VUL_TYPE
+from pocsuite3.lib.utils import url2ip
+from pocsuite3.api import POCBase, Output, register_poc, logger, POC_CATEGORY
 
 
 class DemoPOC(POCBase):
@@ -16,14 +17,13 @@ class DemoPOC(POCBase):
     createDate = '2015-10-26'
     updateDate = '2015-12-09'
     references = ['http://sebug.net/vuldb/ssvid-89339']
-    name = 'Redis 未授权访问'
+    name = 'Redis Unauthenticated'
     appPowerLink = 'http://redis.io/'
     appName = 'Redis'
     appVersion = 'All'
-    vulType = VUL_TYPE.UNAUTHORIZED_ACCESS
+    vulType = 'Unauthorized access'
     desc = '''
-        redis 默认不需要密码即可访问，黑客直接访问即可获取数据库中所有信息，造成严重的信息泄露。
-        说明：“此版本通过生成公钥写入redis文件后直接运行此脚本可在服务器上/root/.ssh文件下生成公钥”
+        redis unauthenticated code execution
     '''
     samples = ['']
     category = POC_CATEGORY.EXPLOITS.REMOTE
