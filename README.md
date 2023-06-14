@@ -1,26 +1,26 @@
-## pocsuite3 (共454个) 最近一次检查时间 2023-06-13 03:08:00
+## pocsuite3 (共454个) 最近一次检查时间 2023-06-14 03:07:56
 ### 收集记录
 | 文件名称 | 收录时间 |
 | :----| :---- |
-| [tomcat-ajp-ghostcat_all_lfi.py](https://github.com/Pontusec/pocsuite3) | 2023-06-13 03:07:59 |
-| [CVE-2021-46422.py](https://github.com/Pontusec/pocsuite3) | 2023-06-13 03:07:59 |
-| [CVE-2022-26134.py](https://github.com/Pontusec/pocsuite3) | 2023-06-13 03:07:58 |
-| [ssh_burst.py](https://github.com/5l1v3r1/pocsuite3-1) | 2023-06-13 03:07:42 |
-| [thinkphp_rce.py](https://github.com/5l1v3r1/pocsuite3-1) | 2023-06-13 03:07:42 |
-| [libssh_auth_bypass.py](https://github.com/5l1v3r1/pocsuite3-1) | 2023-06-13 03:07:42 |
-| [thinkphp_rce2.py](https://github.com/5l1v3r1/pocsuite3-1) | 2023-06-13 03:07:42 |
-| [drupalgeddon2.py](https://github.com/5l1v3r1/pocsuite3-1) | 2023-06-13 03:07:42 |
-| [ecshop_rce.py](https://github.com/5l1v3r1/pocsuite3-1) | 2023-06-13 03:07:42 |
-| [redis_unauthorized_access.py](https://github.com/5l1v3r1/pocsuite3-1) | 2023-06-13 03:07:42 |
-| [ftp_burst.py](https://github.com/5l1v3r1/pocsuite3-1) | 2023-06-13 03:07:42 |
-| [node_red_unauthorized_rce.py](https://github.com/5l1v3r1/pocsuite3-1) | 2023-06-13 03:07:42 |
-| [wd_nas_login_bypass_rce.py](https://github.com/5l1v3r1/pocsuite3-1) | 2023-06-13 03:07:42 |
-| [telnet_burst.py](https://github.com/5l1v3r1/pocsuite3-1) | 2023-06-13 03:07:42 |
-| [demo_poc.py](https://github.com/The-Cracker-Technology/pocsuite3) | 2023-06-13 03:07:40 |
-| [apollo_weak_passwd.py](https://github.com/WZY3641572/pocsuite3) | 2023-06-13 03:07:39 |
-| [solr_all_readfile.py](https://github.com/xx-zhang/pocsuite3-pocs) | 2023-06-13 03:07:36 |
-| [__init__.py](https://github.com/orgTestCodacy11KRepos110MB/repo-2333-pocsuite3) | 2023-06-13 03:07:34 |
-| [login_demo.py](https://github.com/knownsec/pocsuite3) | 2023-06-13 03:07:32 |
+| [__init__.py](https://github.com/knownsec/pocsuite3) | 2023-06-14 03:07:51 |
+| [thinkphp_rce2.py](https://github.com/WZY3641572/pocsuite3) | 2023-06-14 03:07:48 |
+| [CVE-2021-46422.py](https://github.com/WZY3641572/pocsuite3) | 2023-06-14 03:07:48 |
+| [CVE-2022-26134.py](https://github.com/WZY3641572/pocsuite3) | 2023-06-14 03:07:48 |
+| [tomcat-ajp-ghostcat_all_lfi.py](https://github.com/YinWC/PocsForscan) | 2023-06-14 03:07:46 |
+| [solr_all_readfile.py](https://github.com/Pontusec/pocsuite3) | 2023-06-14 03:07:45 |
+| [redis_unauthorized_access.py](https://github.com/Pontusec/pocsuite3) | 2023-06-14 03:07:45 |
+| [ssh_burst.py](https://github.com/The-Cracker-Technology/pocsuite3) | 2023-06-14 03:07:41 |
+| [login_demo.py](https://github.com/The-Cracker-Technology/pocsuite3) | 2023-06-14 03:07:41 |
+| [ftp_burst.py](https://github.com/begaad/pocsuite3-pocs) | 2023-06-14 03:07:37 |
+| [demo_poc.py](https://github.com/begaad/pocsuite3-pocs) | 2023-06-14 03:07:37 |
+| [telnet_burst.py](https://github.com/begaad/pocsuite3-pocs) | 2023-06-14 03:07:37 |
+| [apollo_weak_passwd.py](https://github.com/1derian/pocsuite3_POC) | 2023-06-14 03:07:35 |
+| [thinkphp_rce.py](https://github.com/sssyyynnngithub/mypocsuite3_test) | 2023-06-14 03:07:27 |
+| [libssh_auth_bypass.py](https://github.com/orgTestCodacy11KRepos110MB/repo-2333-pocsuite3) | 2023-06-14 03:07:26 |
+| [drupalgeddon2.py](https://github.com/orgTestCodacy11KRepos110MB/repo-2333-pocsuite3) | 2023-06-14 03:07:26 |
+| [ecshop_rce.py](https://github.com/orgTestCodacy11KRepos110MB/repo-2333-pocsuite3) | 2023-06-14 03:07:26 |
+| [node_red_unauthorized_rce.py](https://github.com/orgTestCodacy11KRepos110MB/repo-2333-pocsuite3) | 2023-06-14 03:07:26 |
+| [wd_nas_login_bypass_rce.py](https://github.com/orgTestCodacy11KRepos110MB/repo-2333-pocsuite3) | 2023-06-14 03:07:26 |
 | [REALOR_弱口令.py](https://github.com/luck-ying/Library-POC) | 2023-05-25 03:07:38 |
 | [REALOR_AgentBoard.XGI_user_sql.py](https://github.com/luck-ying/Library-POC) | 2023-05-25 03:07:38 |
 | [REALOR_index.php_name_sql.py](https://github.com/luck-ying/Library-POC) | 2023-05-25 03:07:38 |
