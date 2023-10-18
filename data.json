@@ -2344,11 +2344,6 @@
         "from": "https://github.com/luck-ying/Library-POC",
         "up_time": "2023-08-23 03:07:16"
     },
-    "051cbd84db531d5ecc005fa4b60d0c64": {
-        "name": "广联达Linkworks_msgbroadcastuploadfile.aspx后台文件上传漏洞.py",
-        "from": "https://github.com/luck-ying/Library-POC",
-        "up_time": "2023-08-23 03:07:16"
-    },
     "7db2b66bfd597a42af133aca0798cb7a": {
         "name": "用友U8_CRM客户关系管理系统getemaildata.php任意文件读取漏洞.py",
         "from": "https://github.com/luck-ying/Library-POC",
@@ -2419,99 +2414,179 @@
         "from": "https://github.com/luck-ying/Library-POC",
         "up_time": "2023-08-23 03:07:16"
     },
-    "0a6f01e1d5c9d2e92040cd051241b493": {
-        "name": "login_demo.py",
-        "from": "https://github.com/Fangrn/pocsuite3",
-        "up_time": "2023-10-17 03:07:35"
+    "ccaab5d29f46a7ae20ebaf220a65dda5": {
+        "name": "用友GPR-U8_u8qx_slbmbygr_gsdm_sql注入.py",
+        "from": "https://github.com/luck-ying/Library-POC",
+        "up_time": "2023-10-18 03:07:40"
     },
-    "fbe5963afd4846215df090ebe4766338": {
+    "6b55f6e0d8d88206b753c749129001b8": {
+        "name": "用友移动系统管理_maportal_appmanager_init_appname_sql注入.py",
+        "from": "https://github.com/luck-ying/Library-POC",
+        "up_time": "2023-10-18 03:07:40"
+    },
+    "e7678892176372f1317e776e57926e49": {
+        "name": "用友移动系统管理_maportal_usermanager_init_ucode_sql注入.py",
+        "from": "https://github.com/luck-ying/Library-POC",
+        "up_time": "2023-10-18 03:07:40"
+    },
+    "1bebfda45a3c4095e803c3368ec1afed": {
+        "name": "用友时空KSOA_common_dept_deptid_sql注入.py",
+        "from": "https://github.com/luck-ying/Library-POC",
+        "up_time": "2023-10-18 03:07:40"
+    },
+    "5ce5100d69c14df4f1058748ce54286f": {
+        "name": "用友时空KSOA_servlet_imagefield_sKeyvalue_sql注入.py",
+        "from": "https://github.com/luck-ying/Library-POC",
+        "up_time": "2023-10-18 03:07:40"
+    },
+    "b6e0dbaf925d1ba9b4ca370d31bcd8aa": {
+        "name": "广联达Linkworks_msgbroadcastuploadfile.aspx后台文件上传漏洞.py",
+        "from": "https://github.com/luck-ying/Library-POC",
+        "up_time": "2023-10-18 03:07:40"
+    },
+    "6241df1d0353f8f5d4a5cd9d2c8cf816": {
+        "name": "H3C_IMC_dynamiccontent.properties.xhtm命令执行.py",
+        "from": "https://github.com/luck-ying/Library-POC",
+        "up_time": "2023-10-18 03:07:40"
+    },
+    "ce6ea5330ec5184da0ba3900ff65b62f": {
+        "name": "通达OA11.9前台sql注入.py",
+        "from": "https://github.com/luck-ying/Library-POC",
+        "up_time": "2023-10-18 03:07:40"
+    },
+    "0827fb6c20ed1c1ec0a0f1063b8c2241": {
+        "name": "通达OA2017_RELATIVES_ID_后台sql注入.py",
+        "from": "https://github.com/luck-ying/Library-POC",
+        "up_time": "2023-10-18 03:07:40"
+    },
+    "fd521984ccd24a5ab47a31f34784c516": {
+        "name": "通达OA11.10_REINSTATEMENT_ID_后台sql注入.py",
+        "from": "https://github.com/luck-ying/Library-POC",
+        "up_time": "2023-10-18 03:07:40"
+    },
+    "d4d2dd7f52033d9dc7cb710795d88abb": {
+        "name": "深信服NGAF防火墙任意文件读取漏洞.py",
+        "from": "https://github.com/luck-ying/Library-POC",
+        "up_time": "2023-10-18 03:07:40"
+    },
+    "eaf1631211d4dde9c6b4ae03cdf23f40": {
+        "name": "JumpServer未授权访问漏洞-CVE-2023-42442.py",
+        "from": "https://github.com/luck-ying/Library-POC",
+        "up_time": "2023-10-18 03:07:40"
+    },
+    "c6cde3cebe971d2755b506a65b1904ac": {
+        "name": "金山终端安全系统V9.0SQL注入漏洞.py",
+        "from": "https://github.com/luck-ying/Library-POC",
+        "up_time": "2023-10-18 03:07:40"
+    },
+    "1dcf6f7d4bbf4e759dbb3e2af7a1fe79": {
+        "name": "jeecgboot_getDictItemsByTable_sql.py",
+        "from": "https://github.com/luck-ying/Library-POC",
+        "up_time": "2023-10-18 03:07:40"
+    },
+    "5c644c28aed034da76d2b308f102fcb1": {
+        "name": "jeecgboot_qurestSql_sql.py",
+        "from": "https://github.com/luck-ying/Library-POC",
+        "up_time": "2023-10-18 03:07:40"
+    },
+    "d96cbc1e061d9ede423ba032270f724d": {
+        "name": "jeecgboot_field_sql.py",
+        "from": "https://github.com/luck-ying/Library-POC",
+        "up_time": "2023-10-18 03:07:40"
+    },
+    "9c08b244c36b52a26d0a62201b8ae3f8": {
         "name": "drupalgeddon2.py",
-        "from": "https://github.com/Fangrn/pocsuite3",
-        "up_time": "2023-10-17 03:07:35"
+        "from": "https://github.com/begaad/pocsuite3-pocs",
+        "up_time": "2023-10-18 03:07:42"
     },
-    "92df14d0b16625c39e7c9af278e3cf85": {
-        "name": "thinkphp_rce.py",
-        "from": "https://github.com/Fangrn/pocsuite3",
-        "up_time": "2023-10-17 03:07:35"
-    },
-    "337dce5c8bbc82f2929dcdabf4684423": {
+    "ae3a674f0527282dd2bff0c0e85b8872": {
         "name": "wd_nas_login_bypass_rce.py",
-        "from": "https://github.com/Fangrn/pocsuite3",
-        "up_time": "2023-10-17 03:07:35"
+        "from": "https://github.com/begaad/pocsuite3-pocs",
+        "up_time": "2023-10-18 03:07:42"
     },
-    "0a83eb847678b46801fcaee79af1a2a7": {
-        "name": "telnet_burst.py",
-        "from": "https://github.com/Fangrn/pocsuite3",
-        "up_time": "2023-10-17 03:07:35"
-    },
-    "bbf4660642980dd8736558d29b4ca1bc": {
-        "name": "ftp_burst.py",
-        "from": "https://github.com/Fangrn/pocsuite3",
-        "up_time": "2023-10-17 03:07:35"
-    },
-    "0de5309bb6b880695dcfd1dc6513bdcc": {
-        "name": "thinkphp_rce2.py",
-        "from": "https://github.com/Fangrn/pocsuite3",
-        "up_time": "2023-10-17 03:07:35"
-    },
-    "55b6c8db96ace105e7612be40046051a": {
-        "name": "ssh_burst.py",
-        "from": "https://github.com/Fangrn/pocsuite3",
-        "up_time": "2023-10-17 03:07:35"
-    },
-    "46fc355478bcc4b99e4c600c13d78af4": {
+    "c73310001ed86167a8d2b8147486a46e": {
         "name": "ecshop_rce.py",
-        "from": "https://github.com/Fangrn/pocsuite3",
-        "up_time": "2023-10-17 03:07:35"
+        "from": "https://github.com/begaad/pocsuite3-pocs",
+        "up_time": "2023-10-18 03:07:42"
     },
-    "1aa6c077f5ac57c6a19be2f68b78a266": {
+    "3dca0aa4917c581e379ecb49edf9a182": {
         "name": "node_red_unauthorized_rce.py",
-        "from": "https://github.com/Fangrn/pocsuite3",
-        "up_time": "2023-10-17 03:07:35"
+        "from": "https://github.com/begaad/pocsuite3-pocs",
+        "up_time": "2023-10-18 03:07:42"
     },
-    "a73fb721a33edd210f627ce55da9adde": {
-        "name": "redis_unauthorized_access.py",
-        "from": "https://github.com/Fangrn/pocsuite3",
-        "up_time": "2023-10-17 03:07:35"
-    },
-    "8232adcedb79c9f8d789f5d99b7c0a0c": {
+    "1bb1263a3c82b80b543ac4140632fa60": {
         "name": "libssh_auth_bypass.py",
-        "from": "https://github.com/Fangrn/pocsuite3",
-        "up_time": "2023-10-17 03:07:35"
+        "from": "https://github.com/begaad/pocsuite3-pocs",
+        "up_time": "2023-10-18 03:07:42"
     },
-    "7bb17db4cd831a2eddb26643c4847fa1": {
-        "name": "apollo_weak_passwd.py",
-        "from": "https://github.com/WZY3641572/pocsuite3",
-        "up_time": "2023-10-17 03:07:38"
-    },
-    "db9565894919138706218b639b1b38d8": {
-        "name": "solr_all_readfile.py",
-        "from": "https://github.com/YinWC/PocsForscan",
-        "up_time": "2023-10-17 03:07:42"
-    },
-    "a0e4360b4665e105ea2589627b7350a4": {
+    "45bdb0abff7b41c2babe9fd7f05f323a": {
         "name": "CVE-2022-26134.py",
-        "from": "https://github.com/Pontusec/pocsuite3",
-        "up_time": "2023-10-17 03:07:42"
+        "from": "https://github.com/WZY3641572/pocsuite3",
+        "up_time": "2023-10-18 03:07:46"
     },
-    "c1885db0a1506fab23d6cd3ee47caff8": {
-        "name": "CVE-2021-46422.py",
-        "from": "https://github.com/Pontusec/pocsuite3",
-        "up_time": "2023-10-17 03:07:42"
+    "3865f383e694ef0ec79bad355e52054c": {
+        "name": "thinkphp_rce2.py",
+        "from": "https://github.com/WZY3641572/pocsuite3",
+        "up_time": "2023-10-18 03:07:46"
     },
-    "024e6942bd65929341e7424763065a52": {
-        "name": "tomcat-ajp-ghostcat_all_lfi.py",
-        "from": "https://github.com/Pontusec/pocsuite3",
-        "up_time": "2023-10-17 03:07:42"
-    },
-    "674e94f364fdb63ec8f1f5eea750376a": {
+    "ead60d8a2cd022859117f109e308c8e8": {
         "name": "demo_poc.py",
-        "from": "https://github.com/The-Cracker-Technology/pocsuite3",
-        "up_time": "2023-10-17 03:07:43"
+        "from": "https://github.com/WZY3641572/pocsuite3",
+        "up_time": "2023-10-18 03:07:46"
     },
-    "ea1a439fda6abdd9d72b3502cb9f276b": {
-        "name": "__init__.py",
+    "aaa29768d97eff36d3fc58a3886bd3aa": {
+        "name": "CVE-2021-46422.py",
+        "from": "https://github.com/WZY3641572/pocsuite3",
+        "up_time": "2023-10-18 03:07:46"
+    },
+    "651174e07507c9470cc1b2bd9054ca4c": {
+        "name": "thinkphp_rce.py",
+        "from": "https://github.com/sssyyynnngithub/mypocsuite3_test",
+        "up_time": "2023-10-18 03:07:49"
+    },
+    "d984cf5be7384d6114ecbe7f403b6289": {
+        "name": "telnet_burst.py",
         "from": "https://github.com/knownsec/pocsuite3",
-        "up_time": "2023-10-17 03:07:49"
+        "up_time": "2023-10-18 03:07:52"
+    },
+    "a7b531e27af7fa88e201222e1004ca32": {
+        "name": "ftp_burst.py",
+        "from": "https://github.com/knownsec/pocsuite3",
+        "up_time": "2023-10-18 03:07:52"
+    },
+    "43d43f2aaf738aee14a2aba182639e59": {
+        "name": "solr_all_readfile.py",
+        "from": "https://github.com/Pontusec/pocsuite3",
+        "up_time": "2023-10-18 03:07:55"
+    },
+    "257d06e7f084c6fa0aa46980b0cdbbdc": {
+        "name": "redis_unauthorized_access.py",
+        "from": "https://github.com/Pontusec/pocsuite3",
+        "up_time": "2023-10-18 03:07:55"
+    },
+    "e133bd44e5893c2e539657adb742a020": {
+        "name": "login_demo.py",
+        "from": "https://github.com/Pontusec/pocsuite3",
+        "up_time": "2023-10-18 03:07:55"
+    },
+    "8daea39e3e6fc74c866dbc71fc513933": {
+        "name": "apollo_weak_passwd.py",
+        "from": "https://github.com/1derian/pocsuite3_POC",
+        "up_time": "2023-10-18 03:07:56"
+    },
+    "cc9c04cef292b3b3473f49c3efc93b74": {
+        "name": "__init__.py",
+        "from": "https://github.com/orgTestCodacy11KRepos110MB/repo-2333-pocsuite3",
+        "up_time": "2023-10-18 03:08:02"
+    },
+    "d84e421f1cd12406aeb33306705a015e": {
+        "name": "tomcat-ajp-ghostcat_all_lfi.py",
+        "from": "https://github.com/YinWC/PocsForscan",
+        "up_time": "2023-10-18 03:08:04"
+    },
+    "211f8e5cae9ea5facd780a5fe7b7687d": {
+        "name": "ssh_burst.py",
+        "from": "https://github.com/The-Cracker-Technology/pocsuite3",
+        "up_time": "2023-10-18 03:08:12"
     }
 }
