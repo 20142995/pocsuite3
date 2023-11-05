@@ -25,10 +25,10 @@ from pocsuite3.modules.listener import REVERSE_PAYLOAD
 class DemoPOC(POCBase):
     vulID = "1571"  # ssvid ID 如果是提交漏洞的同时提交 PoC,则写成 0
     version = "1"  # 默认为1
-    author = "seebug"  # PoC作者的大名
-    vulDate = "2014-10-16"  # 漏洞公开的时间,不知道就写今天
-    createDate = "2014-10-16"  # 编写 PoC 的日期
-    updateDate = "2014-10-16"  # PoC 更新的时间,默认和编写时间一样
+    author = "ZorIqz"  # PoC作者的大名
+    vulDate = "2022-07-13"  # 漏洞公开的时间,不知道就写今天
+    createDate = "2022-07-13"  # 编写 PoC 的日期
+    updateDate = "2022-07-13"  # PoC 更新的时间,默认和编写时间一样
     references = ["https://xxx.xx.com.cn"]  # 漏洞地址来源,0day不用写
     name = "XXXX SQL注入漏洞 PoC"  # PoC 名称
     appPowerLink = "https://www.drupal.org/"  # 漏洞厂商主页地址
@@ -58,7 +58,7 @@ class DemoPOC(POCBase):
         output = Output(self)
         # 验证代码
         result = {
-            # 不管是验证模式或者攻击模式，返回结果 result 中的 key 值必须按照下面的规范来写
+            # 不管是验证模式或者攻击模式，返回结果 results 中的 key 值必须按照下面的规范来写
             # [ PoC结果返回规范 ]( https://github.com/knownsec/pocsuite3/blob/master/docs/CODING.md#resultstandard )
             "Result": {
                 "DBInfo": {
@@ -80,7 +80,7 @@ class DemoPOC(POCBase):
                 },
                 "VerifyInfo": {"URL": "xxx", "Postdata": "xxx", "Path": "xxx"},
                 "SiteAttr": {"Process": "xxx"},
-                "Stdout": "result output string",
+                "Stdout": "results output string",
             }
         }
         if result:  # result是返回结果
