@@ -1,12 +1,12 @@
 """
 If you have issues about development, please read:
 https://github.com/knownsec/pocsuite3/blob/master/docs/CODING.md
-for more about information, plz visit http://pocsuite.org
+for more about information, plz visit https://pocsuite.org
 """
 from collections import OrderedDict
 from urllib.parse import urljoin
 
-from pocsuite3.api import POCBase, Output, register_poc, logger, requests, OptDict
+from pocsuite3.api import POCBase, Output, register_poc, logger, requests, OptDict, VUL_TYPE
 from pocsuite3.api import REVERSE_PAYLOAD, POC_CATEGORY
 
 
@@ -22,7 +22,7 @@ class DemoPOC(POCBase):
     appPowerLink = 'https://www.wdc.com/en-us/'
     appName = 'WD NAS 登陆绕过导致无限远程命令执行'
     appVersion = ''
-    vulType = 'Remote Command Execute'
+    vulType = VUL_TYPE.CODE_EXECUTION
     desc = '''
         Western Digital My Cloud（NAS）登录绕过导致无限制远程命令执行
     '''
