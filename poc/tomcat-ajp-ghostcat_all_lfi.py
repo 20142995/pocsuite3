@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-# Author:pontus
-# Time:2022/7/22
+# Author:V1ZkRA
+# Time:2021/4/16
 
 # !/usr/bin/env python
 # CNVD-2020-10487/CVE-2020-1938
