@@ -1,7 +1,7 @@
 """
 If you have issues about development, please read:
 https://github.com/knownsec/pocsuite3/blob/master/docs/CODING.md
-for more about information, plz visit https://pocsuite.org
+for more about information, plz visit http://pocsuite.org
 """
 
 import os
@@ -9,7 +9,7 @@ import socket
 
 import paramiko
 
-from pocsuite3.api import POCBase, Output, register_poc, logger, POC_CATEGORY, VUL_TYPE
+from pocsuite3.api import POCBase, Output, register_poc, logger, POC_CATEGORY
 
 
 class DemoPOC(POCBase):
@@ -24,7 +24,7 @@ class DemoPOC(POCBase):
     appPowerLink = ' https://www.libssh.org'
     appName = 'libssh'
     appVersion = '>=0.6'
-    vulType = VUL_TYPE.LOGIN_BYPASS
+    vulType = 'Login Bypass'
     desc = '''libssh版本0.6及更高版本在服务端代码中具有身份验证绕过漏洞。攻击者可以在没有任何凭据的情况下成功进行身份验证。 进而可以进行一些恶意操作。'''
     samples = ['']
     install_requires = ['paramiko']
