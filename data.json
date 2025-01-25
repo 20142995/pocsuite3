@@ -487,5 +487,22 @@
         "apache_unomi_cve202013942_poc1.py": "2025-01-25 17:58:18",
         "apache_unomi_cve202013942_poc2.py": "2025-01-25 17:58:18",
         "apache_druid_cve202125646_poc.py": "2025-01-25 17:58:18"
+    },
+    "https://github.com/86zhou/Poc": {
+        "Confluence_poc.py": "2025-01-25 17:58:42",
+        "Jenkins_poc.py": "2025-01-25 17:58:42",
+        "Jira_poc.py": "2025-01-25 17:58:42",
+        "CVE-2020-11753.py": "2025-01-25 17:58:42",
+        "Nexus_CVE_2018_16621.py": "2025-01-25 17:58:42",
+        "Nexus_CVE_2020_10199.py": "2025-01-25 17:58:42",
+        "Nexus_CVE_2020_10204.py": "2025-01-25 17:58:42",
+        "Nexus_poc.py": "2025-01-25 17:58:42",
+        "Solr_poc.py": "2025-01-25 17:58:42",
+        "elasticsearch_unauthorized_access.py": "2025-01-25 17:58:42",
+        "HTTP_unauth.py": "2025-01-25 17:58:42",
+        "influxdb_unauthorized_access.py": "2025-01-25 17:58:42",
+        "nfs_unauthorized_access.py": "2025-01-25 17:58:42",
+        "Socks_unauth.py": "2025-01-25 17:58:42",
+        "vnc_unauthorized_access.py": "2025-01-25 17:58:42"
     }
 }
