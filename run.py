@@ -114,6 +114,7 @@ def commit_push(msg):
 
 def find_pocs(json_file_path, data, temp_directory, links):
     """查找poc"""
+    file_names = {name:data[link][name] for name in data[link] for link in data}
     for link in links:
         for root, _, files in os.walk(os.path.join(temp_directory, md5(link))):
             for file in files:
@@ -125,7 +126,7 @@ def find_pocs(json_file_path, data, temp_directory, links):
                     except:
                         continue
                     if re.search('\s+from\s+pocsuite3\.api\s+import\s+.*\s+class\s+\w+\(POCBase\)\:.*def\s+_verify\(self\).*', content, re.S):
-                        if file not in data.get(link, {}):
+                        if file not in file_names:
                             # if poc_validate(file_path):
                             print(file)
                             data.setdefault(link, {})
