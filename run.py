@@ -170,8 +170,6 @@ async def main():
     find_pocs(file_path, data, temp_directory, links)
 
 
-
-
 # 运行主函数
 if __name__ == '__main__':
     asyncio.run(main())
