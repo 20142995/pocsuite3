@@ -47,7 +47,8 @@ def search_projects(keyword):
     """搜索项目"""
     token = os.getenv("GH_TOKEN", "")
     headers = {
-        "Authorization": f"{token}",
+        "Accept": "application/vnd.github+json",
+        "Authorization": f"Bearer {token}",
         "Connection": "close",
         "User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.119 Safari/537.36",
     }
@@ -55,6 +56,23 @@ def search_projects(keyword):
     response = requests.get(search_url, headers=headers,
                             verify=False, allow_redirects=False).json()
     projects = [i['html_url'] for i in response.get("items", [])]
+
+    return projects
+
+def search_codes(keyword):
+    """搜索代码"""
+    token = os.getenv("GH_TOKEN", "")
+    headers = {
+        "Accept": "application/vnd.github+json",
+        "Authorization": f"Bearer {token}",
+        "Connection": "close",
+        "User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.119 Safari/537.36",
+    }
+    params = {'q': keyword, 'page': 1, 'per_page': 100}
+    search_url = f"https://api.github.com/search/code"
+    response = requests.get(search_url, headers=headers,params=params,
+                            verify=False, allow_redirects=False).json()
+    projects = [i['repository']['html_url'] for i in response.get("items", [])]
 
     return projects
 
@@ -156,9 +174,11 @@ async def main():
     links_1 = list(data.keys())
 
     # 搜索新链接
-    keyword = 'pocsuite3'
-    links_2 = search_projects(keyword)
-    links = list(set(links_0 + links_1 + links_2))
+    keyword2 = '"pocsuite3.api" language:Python'
+    links_2 = search_codes(keyword2)
+    keyword3 = 'pocsuite3'
+    links_3 = search_projects(keyword3)
+    links = list(set(links_0 + links_1 + links_2 + links_3))
 
     if 'https://github.com/20142995/pocsuite3' in links:
         links.remove('https://github.com/20142995/pocsuite3')
@@ -174,3 +194,4 @@ async def main():
 # 运行主函数
 if __name__ == '__main__':
     asyncio.run(main())
+
