@@ -680,5 +680,9 @@
         "通达OA11.9前台sql注入.py": "2025-01-25 17:59:12",
         "通达OA2017_RELATIVES_ID_后台sql注入.py": "2025-01-25 17:59:12",
         "金山终端安全系统V9.0SQL注入漏洞.py": "2025-01-25 17:59:12"
+    },
+    "https://github.com/youyuzhongli/pocsuite3-POC": {
+        "Atlassian Confluence_rce_CVE-2022-26134_youyu.py": "2025-01-25 17:59:21",
+        "spring_cloud_gateway_rce_cve-2022-22947.py": "2025-01-25 17:59:21"
     }
 }
