@@ -415,5 +415,8 @@
     "https://github.com/kkiinnggwweenn/gongzhonghao": {
         "nodejs-CVE-2021-21315_RCE.py": "2025-01-25 17:57:14",
         "solr_all_readfile.py": "2025-01-25 17:57:14"
+    },
+    "https://github.com/zhangreny/BUAA_PythonSecureCoding2023": {
+        "CNVD-2016-04656-pocsuite3.py": "2025-01-25 17:57:24"
     }
 }
