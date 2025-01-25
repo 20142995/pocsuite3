@@ -1412,5 +1412,18 @@
         "webmin_1.92_rce.py": "2025-01-25 18:39:49",
         "windows-ms14-066_all_rce.py": "2025-01-25 18:39:49",
         "zookeeper_all_unauthorized.py": "2025-01-25 18:39:49"
+    },
+    "https://github.com/5huai/POC-Test": {
+        "Ofcms_1_1_2_sql.py": "2025-01-25 18:40:03",
+        "zzcms_8_3_sql.py": "2025-01-25 18:40:03",
+        "jetty_6_x_xss.py": "2025-01-25 18:40:03",
+        "BlueCMS_1_6_xss.py": "2025-01-25 18:40:03",
+        "javamelody_xxe_CVE_2018_15531.py": "2025-01-25 18:40:03",
+        "phpshe_1_7_xxe.py": "2025-01-25 18:40:03",
+        "Apache_Kylin_CVE_2020_13925_rce.py": "2025-01-25 18:40:03",
+        "seacms_6_45_rce.py": "2025-01-25 18:40:03",
+        "zantaopms_CNVD_C_2020_121325_upload.py": "2025-01-25 18:40:03",
+        "apache_flink_cve_2020_17519_download.py": "2025-01-25 18:40:03",
+        "XYHCMS_3_5_download.py": "2025-01-25 18:40:03"
     }
 }
