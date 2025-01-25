@@ -401,7 +401,8 @@
         "wd_nas_login_bypass_rce.py": "2025-01-25 17:47:59",
         "weblogic_cve_2017_10271_unserialization.py": "2025-01-25 17:48:02",
         "login_demo.py": "2025-01-25 17:48:04",
-        "test_api_get_poc_info.py": "2025-01-25 17:48:06"
+        "test_api_get_poc_info.py": "2025-01-25 17:48:06",
+        "tomcat_ajp_cve_2020_1938_arbitrary_file_read.py": "2025-01-25 18:01:15"
     },
     "https://github.com/wyunan/vul_scan_tools": {
         "CVE-2022-22947_SpringCloudGateway.py": "2025-01-25 17:48:14",
