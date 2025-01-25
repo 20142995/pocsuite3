@@ -29,5 +29,8 @@
         "weblogic-wls-2017-10271_all_rce.py": "2025-01-25 17:22:42",
         "webmin_1.92_rce.py": "2025-01-25 17:22:46",
         "zookeeper_all_unauthorized.py": "2025-01-25 17:22:49"
+    },
+    "https://github.com/gubeihc/burp-PocSuite3-POC": {
+        "copy-poc.py": "2025-01-25 17:22:58"
     }
 }
