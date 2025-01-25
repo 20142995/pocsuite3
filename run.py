@@ -54,7 +54,6 @@ def search_projects(keyword):
     search_url = f"https://api.github.com/search/repositories?q={keyword}&sort=updated&page=1&per_page=100"
     response = requests.get(search_url, headers=headers,
                             verify=False, allow_redirects=False).json()
-    print(response)
     projects = [i['html_url'] for i in response.get("items", [])]
 
     return projects
