@@ -828,5 +828,8 @@
     },
     "https://github.com/forever-sky/pocsuite3-poc": {
         "e-office_v9_upload.py": "2025-01-25 18:00:49"
+    },
+    "https://github.com/flowerlake/spring-jolokia-rce": {
+        "spring_boot_jolokia_1_4_rce.py": "2025-01-25 18:00:56"
     }
 }
