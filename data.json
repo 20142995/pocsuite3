@@ -820,5 +820,10 @@
         "Landray-OA-Treexml-Rce.py": "2025-01-25 18:00:26",
         "西迪特 WiFi Web管理系统 ping RCE.py": "2025-01-25 18:00:26",
         "西迪特 WiFi Web管理系统 tracertRCE.py": "2025-01-25 18:00:26"
+    },
+    "https://github.com/MrWQ/py_black_codeing": {
+        "97343.py": "2025-01-25 18:00:42",
+        "joomla_form_brute.py": "2025-01-25 18:00:43",
+        "wp_filemanager_rce.py": "2025-01-25 18:00:43"
     }
 }
