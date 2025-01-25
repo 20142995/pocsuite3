@@ -423,5 +423,9 @@
         "phpinfo敏感信息泄露.py": "2025-01-25 17:57:30",
         "phpMyAdmin 弱密码漏洞.py": "2025-01-25 17:57:30",
         "thinkphp日志泄露.py": "2025-01-25 17:57:30"
+    },
+    "https://github.com/Tender-wu/python-": {
+        "expclient.py": "2025-01-25 17:57:36",
+        "pocclient.py": "2025-01-25 17:57:36"
     }
 }
