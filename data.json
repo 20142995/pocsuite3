@@ -408,5 +408,8 @@
         "CVE-2022-22963_SpringCloudFunction.py": "2025-01-25 17:48:17",
         "CVE-2022-22965_SpringCore.py": "2025-01-25 17:48:19",
         "CVE-2021-43798_Grafana.py": "2025-01-25 17:48:21"
+    },
+    "https://github.com/xiaoyaochen/VWRAT": {
+        "Apache_Solr_RCE_via_Velocity_template.py": "2025-01-25 17:57:08"
     }
 }
