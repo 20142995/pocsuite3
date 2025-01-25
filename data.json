@@ -226,5 +226,8 @@
         "weblogic_cve_2017_10271_unserialization.py": "2025-01-25 17:38:35",
         "login_demo.py": "2025-01-25 17:38:37",
         "test_api_get_poc_info.py": "2025-01-25 17:38:40"
+    },
+    "https://github.com/robin1577/mypoc": {
+        "20220329_spring_spring_function_pre-auth_command_execution_cve-2022-22963.py": "2025-01-25 17:39:14"
     }
 }
