@@ -66,7 +66,7 @@ def poc_validate(file_path):
         command = ["pocsuite", "-r", file_path]
         print(" ".join(command))
         output = subprocess.check_output(
-            command, shell=True, stderr=subprocess.STDOUT, universal_newlines=True, encoding='utf8',timeout=5)
+            command, shell=True, stderr=subprocess.STDOUT, stdin=subprocess.DEVNULL,universal_newlines=True, encoding='utf8',timeout=5)
     except subprocess.CalledProcessError as e:
         output = e.output
     print(output)
