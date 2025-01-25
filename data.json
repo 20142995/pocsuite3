@@ -36,5 +36,22 @@
     "https://github.com/fa1c0n1/pocsuite3-pocs": {
         "nuxeo_8_10_rce.py": "2025-01-25 17:23:04",
         "WSO2_API_Manager_FIleUpload_CVE-2022-29464.py": "2025-01-25 17:23:08"
+    },
+    "https://github.com/GTX690/pocsuite3-pocs": {
+        "drupal_cve_2018_7600_rce.py": "2025-01-25 17:23:13",
+        "struts2_005_rce.py": "2025-01-25 17:23:16",
+        "struts2_008_rce.py": "2025-01-25 17:23:19",
+        "struts2_009_rce.py": "2025-01-25 17:23:22",
+        "struts2_013_rce.py": "2025-01-25 17:23:26",
+        "struts2_015_rce.py": "2025-01-25 17:23:29",
+        "struts2_016_rce.py": "2025-01-25 17:23:32",
+        "struts2_029_rce.py": "2025-01-25 17:23:35",
+        "struts2_032_rce.py": "2025-01-25 17:23:39",
+        "struts2_045_rce.py": "2025-01-25 17:23:43",
+        "struts2_046_rce.py": "2025-01-25 17:23:48",
+        "struts2_048_rce.py": "2025-01-25 17:23:53",
+        "struts2_052_rce.py": "2025-01-25 17:23:57",
+        "struts2_057_rce.py": "2025-01-25 17:24:02",
+        "struts2_devMode_rce.py": "2025-01-25 17:24:07"
     }
 }
