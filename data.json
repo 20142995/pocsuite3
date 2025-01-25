@@ -96,5 +96,36 @@
     },
     "https://github.com/dorkerdevil/Remote-Desktop-Services-Remote-Code-Execution-Vulnerability-CVE-2019-0708-": {
         "cve 2019-0708.py": "2025-01-25 17:26:48"
+    },
+    "https://github.com/dddinmx/POC-Pocsuite3": {
+        "Confluence_Broken_Access_Control_CVE-2023-22515.py": "2025-01-25 17:26:55",
+        "CVE-2023-22527_Atlassian Confluencem命令执行.py": "2025-01-25 17:26:58",
+        "hkvs-ivms-fileupload.py": "2025-01-25 17:27:02",
+        "SolarView.py": "2025-01-25 17:27:05",
+        "云时空社会化商业ERP任意文件上传.py": "2025-01-25 17:27:09",
+        "CERIO DT系列路由器命令执行.py": "2025-01-25 17:27:12",
+        "CVE-2024-0305_Ncast盈可视远程命令执行.py": "2025-01-25 17:27:16",
+        "H3C 用户自助服务平台dynamiccontent.properties.xhtml RCE漏洞.py": "2025-01-25 17:27:20",
+        "JEEVMS仓库管理系统任意文件读取.py": "2025-01-25 17:27:24",
+        "金和OA未授权信息泄露.py": "2025-01-25 17:27:30",
+        "飞鱼星企业级上网行为管理系统前台RCE.py": "2025-01-25 17:27:35",
+        "Apache_APISIX_Dashboard_未授权.py": "2025-01-25 17:27:40",
+        "Apache_Struts2_001.py": "2025-01-25 17:27:46",
+        "Apache_Struts2_016.py": "2025-01-25 17:27:51",
+        "Apache_Struts2_017.py": "2025-01-25 17:27:55",
+        "Apache_Struts2_019.py": "2025-01-25 17:27:59",
+        "Apache_Struts2_045-1.py": "2025-01-25 17:28:02",
+        "Apache_Struts2_045-2.py": "2025-01-25 17:28:06",
+        "Apache_Struts2_046.py": "2025-01-25 17:28:09",
+        "Apache_Struts2_048.py": "2025-01-25 17:28:13",
+        "Apache_Struts2_053.py": "2025-01-25 17:28:17",
+        "Apache_Struts2_061.py": "2025-01-25 17:28:20",
+        "Apache_Struts2_DevMode.py": "2025-01-25 17:28:24",
+        "docker.py": "2025-01-25 17:28:27",
+        "elasticsearch.py": "2025-01-25 17:28:31",
+        "hadoop.py": "2025-01-25 17:28:35",
+        "jenkins.py": "2025-01-25 17:28:39",
+        "mongdb.py": "2025-01-25 17:28:43",
+        "redis.py": "2025-01-25 17:28:47"
     }
 }
