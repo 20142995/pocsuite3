@@ -1742,5 +1742,20 @@
     },
     "https://github.com/xanszZZ/ZX_sqlPOC": {
         "ZX_sqlPOC.py": "2025-01-25 18:41:11"
+    },
+    "https://github.com/xuchaoa/WebScan": {
+        "20190404_WEB_Confluence_path_traversal.py": "2025-01-25 18:41:23",
+        "drupalgeddon2.py": "2025-01-25 18:41:23",
+        "ecshop_rce.py": "2025-01-25 18:41:23",
+        "ftp_burst.py": "2025-01-25 18:41:23",
+        "libssh_auth_bypass.py": "2025-01-25 18:41:23",
+        "node_red_unauthorized_rce.py": "2025-01-25 18:41:23",
+        "redis_unauthorized_access.py": "2025-01-25 18:41:23",
+        "ssh_burst.py": "2025-01-25 18:41:23",
+        "telnet_burst.py": "2025-01-25 18:41:23",
+        "thinkphp_rce.py": "2025-01-25 18:41:23",
+        "thinkphp_rce2.py": "2025-01-25 18:41:23",
+        "wd_nas_login_bypass_rce.py": "2025-01-25 18:41:23",
+        "weblogic_cve_2017_10271_unserialization.py": "2025-01-25 18:41:23"
     }
 }
