@@ -10,7 +10,7 @@ from pocsuite3.api import POC_CATEGORY, VUL_TYPE
 class TestPOC(POCBase):
     vulID = '00002'
     version = '1'
-    author = 'V1ZkRA'
+    author = 'jeffzhang'
     vulDate = '2017-08-15'
     createDate = '2017-08-15'
     updateDate = '2017-08-15'

