@@ -93,5 +93,8 @@
         "jenkins_PoC.py": "2025-01-25 17:26:36",
         "TamronOS_IPTV_PoC.py": "2025-01-25 17:26:39",
         "WiseGigaNAS_PoC.py": "2025-01-25 17:26:43"
+    },
+    "https://github.com/dorkerdevil/Remote-Desktop-Services-Remote-Code-Execution-Vulnerability-CVE-2019-0708-": {
+        "cve 2019-0708.py": "2025-01-25 17:26:48"
     }
 }
