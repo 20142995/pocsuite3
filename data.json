@@ -481,5 +481,11 @@
         "http_request_smuggling.py": "2025-01-25 17:58:12",
         "shiro_key_brute.py": "2025-01-25 17:58:12",
         "shiziyuCMS_sqli.py": "2025-01-25 17:58:12"
+    },
+    "https://github.com/A11an10/poc": {
+        "apache_ofbiz_cve20209496_poc.py": "2025-01-25 17:58:18",
+        "apache_unomi_cve202013942_poc1.py": "2025-01-25 17:58:18",
+        "apache_unomi_cve202013942_poc2.py": "2025-01-25 17:58:18",
+        "apache_druid_cve202125646_poc.py": "2025-01-25 17:58:18"
     }
 }
