@@ -1,1 +1,33 @@
-{}
+{
+    "https://github.com/YinWC/PocsForscan": {
+        "drupal_cve_2018_7600_rce.py": "2025-01-25 17:21:05",
+        "flink-CVE-2020-17519_1.11.2_fileread.py": "2025-01-25 17:21:09",
+        "redis_all_unauthorized.py": "2025-01-25 17:21:12",
+        "redis_unauthorized_access.py": "2025-01-25 17:21:16",
+        "solr_8.3.1_rce.py": "2025-01-25 17:21:19",
+        "solr_all_readfile.py": "2025-01-25 17:21:23",
+        "struts2_005_rce.py": "2025-01-25 17:21:26",
+        "struts2_008_rce.py": "2025-01-25 17:21:30",
+        "struts2_009_rce.py": "2025-01-25 17:21:33",
+        "struts2_013_rce.py": "2025-01-25 17:21:37",
+        "struts2_015_rce.py": "2025-01-25 17:21:42",
+        "struts2_016_rce.py": "2025-01-25 17:21:48",
+        "struts2_029_rce.py": "2025-01-25 17:21:52",
+        "struts2_032_rce.py": "2025-01-25 17:21:56",
+        "struts2_045_rce.py": "2025-01-25 17:21:59",
+        "struts2_046_rce.py": "2025-01-25 17:22:03",
+        "struts2_048_rce.py": "2025-01-25 17:22:06",
+        "struts2_052_rce.py": "2025-01-25 17:22:10",
+        "struts2_057_rce.py": "2025-01-25 17:22:13",
+        "struts2_devMode_rce.py": "2025-01-25 17:22:17",
+        "tomcat-ajp-ghostcat_all_lfi.py": "2025-01-25 17:22:20",
+        "weblogic-async-2019-2725_all_rce.py": "2025-01-25 17:22:25",
+        "Weblogic-console-2020-14882_all_rce.py": "2025-01-25 17:22:28",
+        "Weblogic-iiop-2020-2551_all_rce.py": "2025-01-25 17:22:32",
+        "weblogic-ssrf_all_ssrf.py": "2025-01-25 17:22:35",
+        "weblogic-vul-check_all_rce.py": "2025-01-25 17:22:39",
+        "weblogic-wls-2017-10271_all_rce.py": "2025-01-25 17:22:42",
+        "webmin_1.92_rce.py": "2025-01-25 17:22:46",
+        "zookeeper_all_unauthorized.py": "2025-01-25 17:22:49"
+    }
+}
