@@ -122,7 +122,7 @@ def find_pocs(json_file_path, data, temp_directory, links):
                                 current_path, 'poc'))
                             commit_push(f"from {link}")
         write_json(json_file_path, data=data)
-
+        commit_push(f"add {link}")
 
 async def clone_github_project(link, save_directory):
     """克隆GitHub项目到指定目录"""
