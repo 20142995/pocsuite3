@@ -32,5 +32,9 @@
     },
     "https://github.com/gubeihc/burp-PocSuite3-POC": {
         "copy-poc.py": "2025-01-25 17:22:58"
+    },
+    "https://github.com/fa1c0n1/pocsuite3-pocs": {
+        "nuxeo_8_10_rce.py": "2025-01-25 17:23:04",
+        "WSO2_API_Manager_FIleUpload_CVE-2022-29464.py": "2025-01-25 17:23:08"
     }
 }
