@@ -474,5 +474,12 @@
         "Windows_ms14-066_all_RCE.py": "2025-01-25 17:58:06",
         "Windows_RDP_CVE-2019-0708.py": "2025-01-25 17:58:06",
         "Zookeeper_all_unauthorized.py": "2025-01-25 17:58:06"
+    },
+    "https://github.com/wuerror/pocsuite3_pocs": {
+        "cve_2022_0540.py": "2025-01-25 17:58:12",
+        "drupal7_geddon2.py": "2025-01-25 17:58:12",
+        "http_request_smuggling.py": "2025-01-25 17:58:12",
+        "shiro_key_brute.py": "2025-01-25 17:58:12",
+        "shiziyuCMS_sqli.py": "2025-01-25 17:58:12"
     }
 }
