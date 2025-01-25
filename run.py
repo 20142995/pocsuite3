@@ -111,7 +111,7 @@ def find_pocs(json_file_path, data, temp_directory, links):
                             content = f.read()
                     except:
                         continue
-                    if re.search('from\s+pocsuite3\.api\s+import\s+.*class\s+\w+\(POCBase)\:.*def\s+_verify\(self\).*', content, re.S):
+                    if re.search('from\s+pocsuite3\.api\s+import\s+.*\s+class\s+\w+\(POCBase\)\:.*def\s+_verify\(self\).*', content, re.S):
                         if file not in data.get(link, {}):
                             # if poc_validate(file_path):
                             print(file)
@@ -154,12 +154,13 @@ async def main():
     file_path = os.path.join(os.path.dirname(
         os.path.abspath(__file__)), 'data.json')
     data = read_json(file_path)
+    links_0 = ["https://github.com/mlxwlX/PocWrite_pocsuite3","https://github.com/gubeihc/burp-PocSuite3-POC","https://github.com/zer0yu/Open-PoC","https://github.com/Pontusec/pocsuite3","https://github.com/youyuzhongli/pocsuite3-POC","https://github.com/WZgoodboy/pocsuite3-pocs","https://github.com/wuerror/pocsuite3_pocs","https://github.com/WZY3641572/pocsuite3","https://github.com/robin1577/mypoc","https://github.com/ox01024/PocHub","https://github.com/1derian/pocsuite3_pro","https://github.com/Micr067/PeiQi-PocSuite3","https://github.com/dorkerdevil/Remote-Desktop-Services-Remote-Code-Execution-Vulnerability-CVE-2019-0708-","https://github.com/knownsec/pocsuite3","https://github.com/20142995/pocsuite3","https://github.com/xx-zhang/pocsuite3-pocs","https://github.com/L1GH7/Vaultiris","https://github.com/rockmelodies/exp_code_generator","https://github.com/vikingsword/Scanner","https://github.com/midisec/pocsuite-poc","https://github.com/charis3306/expStorm","https://github.com/Tender-wu/python-","https://github.com/wzqawp/vulnerability","https://github.com/luck-ying/Library-POC","https://github.com/1derian/pocsuite3_POC","https://github.com/begaad/pocsuite3-pocs","https://github.com/iamHuFei/scxd","https://github.com/zhangreny/BUAA_PythonSecureCoding2023","https://github.com/Hcl4y/VulnerabilityExploitationFramework","https://github.com/wikiZ/thinkphp3.2.x_rce","https://github.com/86zhou/Poc","https://github.com/kkiinnggwweenn/gongzhonghao","https://github.com/xiaoyaochen/VWRAT","https://github.com/ctccaozhe/poc","https://github.com/A11an10/poc","https://github.com/purple-WL/SHOWDOC-file-upload-vulnerability","https://github.com/whoadmin/pocs","https://github.com/1oid/cms_poc_exp","https://github.com/Cl0udG0d/SZhe_Scan","https://github.com/sammylu/pocsuite-poc","https://github.com/Luoooio/allCode","https://github.com/zjj1002/aws-cloud-cmdb-system","https://github.com/shadowsock5/Poc","https://github.com/mama2100/exp_python","https://github.com/rabbitsafe/CVE-2021-37580","https://github.com/zoombegod/sectools","https://github.com/jiuwumengzhu/note","https://github.com/sysyz/pocs","https://github.com/flowerlake/spring-jolokia-rce","https://github.com/MrWQ/py_black_codeing","https://github.com/ScarlettDefender/poc","https://github.com/orgTestCodacy11KRepos110MB/repo-2333-pocsuite3","https://github.com/MD-SEC/MDPOCS","https://github.com/dddinmx/POC-Pocsuite3","https://github.com/DirtyPipe/PocWrite_pocsuite3","https://github.com/YinWC/PocsForscan","https://github.com/Fangrn/pocsuite3","https://github.com/The-Cracker-Technology/pocsuite3"]
     links_1 = list(data.keys())
 
     # 搜索新链接
     keyword = 'pocsuite3'
     links_2 = search_projects(keyword)
-    links = list(set(links_1 + links_2))
+    links = list(set(links_0 + links_1 + links_2))
 
     if 'https://github.com/20142995/pocsuite3' in links:
         links.remove('https://github.com/20142995/pocsuite3')
