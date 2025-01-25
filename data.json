@@ -127,5 +127,19 @@
         "jenkins.py": "2025-01-25 17:28:39",
         "mongdb.py": "2025-01-25 17:28:43",
         "redis.py": "2025-01-25 17:28:47"
+    },
+    "https://github.com/midisec/pocsuite-poc": {
+        "74cms_rce.py": "2025-01-25 17:28:52",
+        "dedecms5.7.85_admin_getshell.py": "2025-01-25 17:28:55",
+        "landray_oa_rce.py": "2025-01-25 17:28:59",
+        "mingyu_login_bypass.py": "2025-01-25 17:29:02",
+        "nsfocus_firewall_upload.py": "2025-01-25 17:29:06",
+        "trx_behaviorsystem_rce.py": "2025-01-25 17:29:09",
+        "yccms3.4_file_deletion.py": "2025-01-25 17:29:13",
+        "yccms3.4_file_upload.py": "2025-01-25 17:29:17",
+        "yccms3.4_remote_pass_change.py": "2025-01-25 17:29:20",
+        "yongyou_ksoa_upload_rce.py": "2025-01-25 17:29:24",
+        "zbzcms_admin_getshell.py": "2025-01-25 17:29:27",
+        "zbzcms_file_deletion.py": "2025-01-25 17:29:31"
     }
 }
