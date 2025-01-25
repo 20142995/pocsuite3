@@ -1020,5 +1020,8 @@
         "webmin_1.92_rce.py": "2025-01-25 18:02:41",
         "windows-ms14-066_all_rce.py": "2025-01-25 18:02:41",
         "zookeeper_all_unauthorized.py": "2025-01-25 18:02:41"
+    },
+    "https://github.com/Luoooio/allCode": {
+        "CVE-2021-41773.py": "2025-01-25 18:03:20"
     }
 }
