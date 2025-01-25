@@ -1757,5 +1757,10 @@
         "thinkphp_rce2.py": "2025-01-25 18:41:23",
         "wd_nas_login_bypass_rce.py": "2025-01-25 18:41:23",
         "weblogic_cve_2017_10271_unserialization.py": "2025-01-25 18:41:23"
+    },
+    "https://github.com/expzhizhuo/iotscan-server": {
+        "_0_wxwork_info_disclosure.py": "2025-01-25 18:41:30",
+        "_1_dahua_info_disclosure.py": "2025-01-25 18:41:30",
+        "_99720_ecology_xml_inj.py": "2025-01-25 18:41:30"
     }
 }
