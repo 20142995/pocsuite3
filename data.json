@@ -855,5 +855,20 @@
         "iis-shortname_6_disclosure.py": "2025-01-25 18:01:08",
         "_170826_Zabbix_303_SQL_Injection.py": "2025-01-25 18:01:08",
         "zookeeper_all_unauthorized.py": "2025-01-25 18:01:08"
+    },
+    "https://github.com/charis3306/expStorm": {
+        "Active-MQ-unauth-access.py": "2025-01-25 18:01:21",
+        "Apache-Flink-unauth-access-upfile.py": "2025-01-25 18:01:21",
+        "Apache-Flink-unauth-access.py": "2025-01-25 18:01:21",
+        "Apache-Kylin-unauth-access.py": "2025-01-25 18:01:21",
+        "Apache-Minio-weak.py": "2025-01-25 18:01:21",
+        "RabbitMQ-unauth-access.py": "2025-01-25 18:01:21",
+        "Spring-boot-admin-unauth-access.py": "2025-01-25 18:01:21",
+        "Spring-boot-unauth-access.py": "2025-01-25 18:01:21",
+        "xxl-job-unauth-access.py": "2025-01-25 18:01:21",
+        "xxl-job-weak.py": "2025-01-25 18:01:21",
+        "Zabbix-unautu-access.py": "2025-01-25 18:01:21",
+        "UserSelect-unauth-access.py": "2025-01-25 18:01:21",
+        "用友-NC-file-read.py": "2025-01-25 18:01:21"
     }
 }
