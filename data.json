@@ -1479,5 +1479,12 @@
         "致远OA_getSessionList.jsp_Session泄漏.py": "2025-01-25 18:40:05",
         "致远OA_webmail.do_任意文件下载.py": "2025-01-25 18:40:05",
         "致远OA_帆软组件_ReportServer_目录遍历.py": "2025-01-25 18:40:05"
+    },
+    "https://github.com/xuxuzhouzhou/thinkphp5-rce": {
+        "1Business.py": "2025-01-25 18:40:12",
+        "2Casdoor.py": "2025-01-25 18:40:12",
+        "3Ajax.py": "2025-01-25 18:40:12",
+        "4Atlassian.py": "2025-01-25 18:40:12",
+        "5gui.py": "2025-01-25 18:40:12"
     }
 }
