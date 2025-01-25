@@ -69,5 +69,22 @@
         "wd_nas_login_bypass_rce.py": "2025-01-25 17:25:09",
         "weblogic_cve_2017_10271_unserialization.py": "2025-01-25 17:25:13",
         "login_demo.py": "2025-01-25 17:25:17"
+    },
+    "https://github.com/z1mu/pocsuite3": {
+        "20190404_WEB_Confluence_path_traversal.py": "2025-01-25 17:25:22",
+        "drupalgeddon2.py": "2025-01-25 17:25:26",
+        "ecshop_rce.py": "2025-01-25 17:25:29",
+        "ftp_burst.py": "2025-01-25 17:25:33",
+        "libssh_auth_bypass.py": "2025-01-25 17:25:40",
+        "node_red_unauthorized_rce.py": "2025-01-25 17:25:47",
+        "redis_unauthorized_access.py": "2025-01-25 17:25:51",
+        "ssh_burst.py": "2025-01-25 17:25:58",
+        "telnet_burst.py": "2025-01-25 17:26:01",
+        "thinkphp_rce.py": "2025-01-25 17:26:05",
+        "thinkphp_rce2.py": "2025-01-25 17:26:08",
+        "wd_nas_login_bypass_rce.py": "2025-01-25 17:26:12",
+        "weblogic_cve_2017_10271_unserialization.py": "2025-01-25 17:26:15",
+        "login_demo.py": "2025-01-25 17:26:19",
+        "test_api_get_poc_info.py": "2025-01-25 17:26:22"
     }
 }
