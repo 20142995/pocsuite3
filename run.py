@@ -182,7 +182,8 @@ async def main():
 
     if 'https://github.com/20142995/pocsuite3' in links:
         links.remove('https://github.com/20142995/pocsuite3')
-
+    if 'https://github.com/20142995/pocs' in links:
+        links.remove('https://github.com/20142995/pocs')
     # 克隆项目
     temp_directory = tempfile.mkdtemp()
     await clone_github_projects(links, temp_directory)
