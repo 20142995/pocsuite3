@@ -427,5 +427,8 @@
     "https://github.com/Tender-wu/python-": {
         "expclient.py": "2025-01-25 17:57:36",
         "pocclient.py": "2025-01-25 17:57:36"
+    },
+    "https://github.com/rabbitsafe/CVE-2021-37580": {
+        "CVE-2021-37580-Unauthorized.py": "2025-01-25 17:58:00"
     }
 }
