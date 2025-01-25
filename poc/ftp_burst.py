@@ -1,7 +1,7 @@
 """
 If you have issues about development, please read:
 https://github.com/knownsec/pocsuite3/blob/master/docs/CODING.md
-for more about information, plz visit http://pocsuite.org
+for more about information, plz visit https://pocsuite.org
 """
 
 import ftplib
@@ -65,7 +65,7 @@ result_queue = queue.Queue()
 
 
 def get_word_list():
-    common_username = ('ftp', 'test', 'root', 'guest', 'admin', 'daemon', 'user')
+    common_username = ('admin', 'ftp', 'test', 'root', 'guest', 'daemon', 'user')
     with open(paths.WEAK_PASS) as f:
         return itertools.product(common_username, f)
 
