@@ -385,5 +385,22 @@
         "蓝海卓越计费管理系统任意命令执行.py": "2025-01-25 17:46:57",
         "蓝海卓越计费管理系统任意文件读取.py": "2025-01-25 17:47:00",
         "飞鱼星上网行为管理信息泄露.py": "2025-01-25 17:47:02"
+    },
+    "https://github.com/Snowty/pocset": {
+        "20190404_WEB_Confluence_path_traversal.py": "2025-01-25 17:47:20",
+        "drupalgeddon2.py": "2025-01-25 17:47:23",
+        "ecshop_rce.py": "2025-01-25 17:47:25",
+        "ftp_burst.py": "2025-01-25 17:47:28",
+        "libssh_auth_bypass.py": "2025-01-25 17:47:34",
+        "node_red_unauthorized_rce.py": "2025-01-25 17:47:41",
+        "redis_unauthorized_access.py": "2025-01-25 17:47:43",
+        "ssh_burst.py": "2025-01-25 17:47:49",
+        "telnet_burst.py": "2025-01-25 17:47:52",
+        "thinkphp_rce.py": "2025-01-25 17:47:54",
+        "thinkphp_rce2.py": "2025-01-25 17:47:57",
+        "wd_nas_login_bypass_rce.py": "2025-01-25 17:47:59",
+        "weblogic_cve_2017_10271_unserialization.py": "2025-01-25 17:48:02",
+        "login_demo.py": "2025-01-25 17:48:04",
+        "test_api_get_poc_info.py": "2025-01-25 17:48:06"
     }
 }
