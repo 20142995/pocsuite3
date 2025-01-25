@@ -1093,5 +1093,10 @@
     },
     "https://github.com/wikiZ/thinkphp3.2.x_rce": {
         "ThinkPHP RCE 3.2.X.py": "2025-01-25 18:04:02"
+    },
+    "https://github.com/sysyz/pocs": {
+        "dvwa_sql_get.py": "2025-01-25 18:04:16",
+        "pikachu_SQL_get.py": "2025-01-25 18:04:16",
+        "pikachu_SQL_post.py": "2025-01-25 18:04:16"
     }
 }
