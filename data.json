@@ -1089,5 +1089,8 @@
     },
     "https://github.com/mama2100/exp_python": {
         "poc1_flask.py": "2025-01-25 18:03:56"
+    },
+    "https://github.com/wikiZ/thinkphp3.2.x_rce": {
+        "ThinkPHP RCE 3.2.X.py": "2025-01-25 18:04:02"
     }
 }
