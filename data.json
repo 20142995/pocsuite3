@@ -402,5 +402,11 @@
         "weblogic_cve_2017_10271_unserialization.py": "2025-01-25 17:48:02",
         "login_demo.py": "2025-01-25 17:48:04",
         "test_api_get_poc_info.py": "2025-01-25 17:48:06"
+    },
+    "https://github.com/wyunan/vul_scan_tools": {
+        "CVE-2022-22947_SpringCloudGateway.py": "2025-01-25 17:48:14",
+        "CVE-2022-22963_SpringCloudFunction.py": "2025-01-25 17:48:17",
+        "CVE-2022-22965_SpringCore.py": "2025-01-25 17:48:19",
+        "CVE-2021-43798_Grafana.py": "2025-01-25 17:48:21"
     }
 }
