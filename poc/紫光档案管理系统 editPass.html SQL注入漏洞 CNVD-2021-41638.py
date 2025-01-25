@@ -1,8 +1,3 @@
-"""
-If you have issues about development, please read:
-https://github.com/knownsec/pocsuite3/blob/master/docs/CODING.md
-for more about information, plz visit https://pocsuite.org
-"""
 import re, base64
 from pocsuite3.lib.core.data import logger
 from collections import OrderedDict
@@ -16,16 +11,15 @@ class DemoPOC(POCBase):
     vulID = '13'  
     author = ['PeiQi']
     name = '紫光档案管理系统 editPass.html SQL注入漏洞 CNVD-2021-41638'
-    vulType = VUL_TYPE.PATH_DISCLOSURE
     desc = '''紫光软件系统有限公司（以下简称“紫光软件”）是中国领先的行业解决方案和IT服务提供商。
 紫光电子档案管理系统存在SQL注入漏洞。攻击者可利用漏洞获取数据库敏感信息。
     '''
-    appPowerLink = 'http://www.unisra.com/'
     appName = '紫光档案管理系统'
     appVersion = '未知版本'
     fofa_dork = {'fofa': 'app="紫光档案管理系统"'} 
     samples = []
     install_requires = ['']
+    vulType = VUL_TYPE.PATH_DISCLOSURE
     category = POC_CATEGORY.EXPLOITS.WEBAPP
 
     def _options(self):
