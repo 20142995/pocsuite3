@@ -1205,5 +1205,13 @@
     },
     "https://github.com/XTeam-Wing/CVE-2021-22205": {
         "CVE-2021-22205.py": "2025-01-25 18:05:31"
+    },
+    "https://github.com/sammylu/pocsuite-poc": {
+        "phpstudy_rce.py": "2025-01-25 18:05:43",
+        "thinkphp_include.py": "2025-01-25 18:05:43",
+        "think_rce_one.py": "2025-01-25 18:05:43",
+        "think_rce_two.py": "2025-01-25 18:05:43",
+        "think_sql.py": "2025-01-25 18:05:43",
+        "CVE-2016-8735.py": "2025-01-25 18:05:43"
     }
 }
