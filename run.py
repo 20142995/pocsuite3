@@ -127,7 +127,7 @@ def find_pocs(json_file_path, data, temp_directory, links):
                             content = f.read()
                     except:
                         continue
-                    if re.search('from\s+pocsuite3\.api\s+import\s+.*\s+class\s+\w+\(POCBase\)\:.*def\s+_verify\(self\).*', content, re.S):
+                    if re.search('\s+from\s+pocsuite3\.api\s+import\s+.*\s+class\s+\w+\(POCBase\)\:.*def\s+_verify\(self\).*', content, re.S):
                         if file not in data.get(link, {}):
                             # if poc_validate(file_path):
                             print(file)
