@@ -66,7 +66,7 @@ def poc_validate(file_path):
         command = ["pocsuite", "-r", file_path]
         print(" ".join(command))
         output = subprocess.check_output(
-            command, shell=True, stderr=subprocess.STDOUT, universal_newlines=True, encoding='utf8')
+            command, shell=True, stderr=subprocess.STDOUT, universal_newlines=True, encoding='utf8',timeout=5)
     except subprocess.CalledProcessError as e:
         output = e.output
     print(output)
@@ -158,7 +158,7 @@ async def main():
     # 搜索新链接
     keyword = 'pocsuite3'
     links_2 = search_projects(keyword)
-    links = list(set(links_1 + links_2))[:5]
+    links = list(set(links_1 + links_2))
     print(links)
 
     if 'https://github.com/20142995/pocsuite3' in links:
