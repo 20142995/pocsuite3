@@ -831,5 +831,28 @@
     },
     "https://github.com/flowerlake/spring-jolokia-rce": {
         "spring_boot_jolokia_1_4_rce.py": "2025-01-25 18:00:56"
+    },
+    "https://github.com/1oid/cms_poc_exp": {
+        "724CMS_4_01_index_php_ID_SQL_Injection_Vulnerability.py": "2025-01-25 18:01:08",
+        "dede_guestbook_sqli.py": "2025-01-25 18:01:08",
+        "Discuz_Plugin_JiangHu_id_SQL_Injection_Vulnerability.py": "2025-01-25 18:01:08",
+        "_170826_Joomla_345_RCE.py": "2025-01-25 18:01:08",
+        "redis_all_unauthorized.py": "2025-01-25 18:01:08",
+        "solr_8_3_1_rce.py": "2025-01-25 18:01:08",
+        "springboot-actuator_all_unauthorized.py": "2025-01-25 18:01:08",
+        "_160615_Struts2_037_rce.py": "2025-01-25 18:01:08",
+        "tomcat-ajp-ghostcat_all_lfi.py": "2025-01-25 18:01:08",
+        "_180323_180219_Tomcat_7_PUT_RCE.py": "2025-01-25 18:01:08",
+        "weblogic-async-2019-2725_all_rce.py": "2025-01-25 18:01:08",
+        "weblogic-console-2020-14882_all_rce.py": "2025-01-25 18:01:08",
+        "weblogic-iiop-2020-2551_all_rce.py": "2025-01-25 18:01:08",
+        "weblogic-ssrf_all_ssrf.py": "2025-01-25 18:01:08",
+        "weblogic-vul-check_all_rce.py": "2025-01-25 18:01:08",
+        "weblogic-wls-2017-10271_all_rce.py": "2025-01-25 18:01:08",
+        "_180418_WebLogic_wls_all_RCE.py": "2025-01-25 18:01:08",
+        "iis-ms15-034_7_rce.py": "2025-01-25 18:01:08",
+        "iis-shortname_6_disclosure.py": "2025-01-25 18:01:08",
+        "_170826_Zabbix_303_SQL_Injection.py": "2025-01-25 18:01:08",
+        "zookeeper_all_unauthorized.py": "2025-01-25 18:01:08"
     }
 }
