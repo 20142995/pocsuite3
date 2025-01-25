@@ -96,6 +96,7 @@ def commit_push(msg):
     os.chdir(current_path)
     os.system('git add .')
     os.system(f'git commit -m "{msg}"')
+    os.system(f'git push')
 
 
 def find_pocs(json_file_path, data, temp_directory, links):
