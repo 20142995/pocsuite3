@@ -98,7 +98,7 @@ def commit_push(msg):
     os.system(f'git commit -m "{msg}"')
 
 
-def find_pocs(data, temp_directory, links):
+def find_pocs(json_file_path, data, temp_directory, links):
     """查找poc"""
     for link in links:
         for root, _, files in os.walk(os.path.join(temp_directory, md5(link))):
@@ -121,6 +121,7 @@ def find_pocs(data, temp_directory, links):
                             shutil.copy2(file_path, os.path.join(
                                 current_path, 'poc'))
                             commit_push(f"from {link}")
+        write_json(json_file_path, data=data)
 
 
 async def clone_github_project(link, save_directory):
@@ -166,10 +167,9 @@ async def main():
     await clone_github_projects(links, temp_directory)
 
     # 查找poc-验证poc-提交poc-记录信息
-    find_pocs(data, temp_directory, links)
+    find_pocs(file_path, data, temp_directory, links)
 
-    # 保存
-    write_json(file_path, data=data)
+
 
 
 # 运行主函数
