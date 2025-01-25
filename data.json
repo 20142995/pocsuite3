@@ -684,5 +684,9 @@
     "https://github.com/youyuzhongli/pocsuite3-POC": {
         "Atlassian Confluence_rce_CVE-2022-26134_youyu.py": "2025-01-25 17:59:21",
         "spring_cloud_gateway_rce_cve-2022-22947.py": "2025-01-25 17:59:21"
+    },
+    "https://github.com/wzqawp/vulnerability": {
+        "goahead_CVE-2021-42342.py": "2025-01-25 17:59:33",
+        "spring_CVE-2022-22947.py": "2025-01-25 17:59:34"
     }
 }
