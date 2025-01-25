@@ -229,5 +229,12 @@
     },
     "https://github.com/robin1577/mypoc": {
         "20220329_spring_spring_function_pre-auth_command_execution_cve-2022-22963.py": "2025-01-25 17:39:14"
+    },
+    "https://github.com/BJLIYANLIANG/PeiQi-WIKI-PocSuite3": {
+        "Grafana plugins 任意文件读取漏洞 CVE-2021-43798.py": "2025-01-25 17:39:23",
+        "Apache Druid LoadData 任意文件读取漏洞 CVE-2021-36749.py": "2025-01-25 17:39:26",
+        "Apache Druid sampler 远程代码执行漏洞 CVE-2021-25646.py": "2025-01-25 17:39:28",
+        "Apache Flink 目录遍历漏洞 CVE-2020-17519.py": "2025-01-25 17:39:31",
+        "Apache ShenYu dashboardUser 账号密码泄漏漏洞 CVE-2021-37580.py": "2025-01-25 17:39:33"
     }
 }
