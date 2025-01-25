@@ -1224,5 +1224,22 @@
         "ssh_burst.py": "2025-01-25 18:05:50",
         "telnet_burst.py": "2025-01-25 18:05:50",
         "redis_unauthorized_access.py": "2025-01-25 18:05:50"
+    },
+    "https://github.com/H4CK3RT3CH/pocsuite3": {
+        "20190404_WEB_Confluence_path_traversal.py": "2025-01-25 18:06:03",
+        "drupalgeddon2.py": "2025-01-25 18:06:03",
+        "ecshop_rce.py": "2025-01-25 18:06:03",
+        "ftp_burst.py": "2025-01-25 18:06:03",
+        "libssh_auth_bypass.py": "2025-01-25 18:06:03",
+        "node_red_unauthorized_rce.py": "2025-01-25 18:06:03",
+        "redis_unauthorized_access.py": "2025-01-25 18:06:03",
+        "ssh_burst.py": "2025-01-25 18:06:03",
+        "telnet_burst.py": "2025-01-25 18:06:03",
+        "thinkphp_rce.py": "2025-01-25 18:06:03",
+        "thinkphp_rce2.py": "2025-01-25 18:06:03",
+        "wd_nas_login_bypass_rce.py": "2025-01-25 18:06:03",
+        "weblogic_cve_2017_10271_unserialization.py": "2025-01-25 18:06:03",
+        "login_demo.py": "2025-01-25 18:06:03",
+        "test_api_get_poc_info.py": "2025-01-25 18:06:03"
     }
 }

