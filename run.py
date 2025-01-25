@@ -1,6 +1,5 @@
 import os
 import re
-import csv
 import shutil
 import json
 import asyncio
@@ -9,8 +8,6 @@ import subprocess
 import requests
 import time
 import hashlib
-import zipfile
-import platform
 
 requests.packages.urllib3.disable_warnings()
 
