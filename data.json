@@ -1202,5 +1202,8 @@
         "login_demo.py": "2025-01-25 18:05:08",
         "test_api_get_poc_info.py": "2025-01-25 18:05:08",
         "test_build_url.py": "2025-01-25 18:05:08"
+    },
+    "https://github.com/XTeam-Wing/CVE-2021-22205": {
+        "CVE-2021-22205.py": "2025-01-25 18:05:31"
     }
 }
