@@ -1394,5 +1394,23 @@
         "nsfocus_NGFW_resourse.php_arbitrary_file_upload.py": "2025-01-25 18:06:10",
         "topsec_static_convert.php_command_execution.py": "2025-01-25 18:06:10",
         "孚盟云前台sql注入.py": "2025-01-25 18:06:10"
+    },
+    "https://github.com/jeffzh3ng/fuxi": {
+        "hikvision-2013-4976_web_login-bypass.py": "2025-01-25 18:39:49",
+        "iis-ms15-034_7_rce.py": "2025-01-25 18:39:49",
+        "iis-shortname_6_disclosure.py": "2025-01-25 18:39:49",
+        "memcached_all_unauthorized.py": "2025-01-25 18:39:49",
+        "redis_all_unauthorized.py": "2025-01-25 18:39:49",
+        "redis_unauthorized_access.py": "2025-01-25 18:39:49",
+        "snmp_v2_unauthorized.py": "2025-01-25 18:39:49",
+        "solr_8.3.1_rce.py": "2025-01-25 18:39:49",
+        "supervisord-2017-11610_3_rce.py": "2025-01-25 18:39:49",
+        "weblogic-async-2019-2725_all_rce.py": "2025-01-25 18:39:49",
+        "weblogic-ssrf_all_ssrf.py": "2025-01-25 18:39:49",
+        "weblogic-vul-check_all_rce.py": "2025-01-25 18:39:49",
+        "weblogic-wls-2017-10271_all_rce.py": "2025-01-25 18:39:49",
+        "webmin_1.92_rce.py": "2025-01-25 18:39:49",
+        "windows-ms14-066_all_rce.py": "2025-01-25 18:39:49",
+        "zookeeper_all_unauthorized.py": "2025-01-25 18:39:49"
     }
 }
