@@ -144,5 +144,10 @@
     },
     "https://github.com/wikiZ/springboot_CVE-2022-22965": {
         "springboot_CVE-2022-22965.py": "2025-01-25 17:29:36"
+    },
+    "https://github.com/ox01024/PocHub": {
+        "Apache_Solr_log4j2.py": "2025-01-25 17:29:43",
+        "VMWare_vcenter_log4j2.py": "2025-01-25 17:29:46",
+        "panabitlog_rce.py": "2025-01-25 17:29:50"
     }
 }
