@@ -188,7 +188,11 @@ async def main():
 
     # 查找poc-验证poc-提交poc-记录信息
     find_pocs(file_path, data, temp_directory, links)
-
+    # 写入README.md
+    readme_md = '## pocsuite3 (共{}个) 最近一次检查时间 {}\n'.format(
+        len(os.listdir('poc')) - 1, time.strftime("%Y-%m-%d %H:%M:%S"))
+    with open('README.md', 'w', encoding='utf8') as f:
+        f.write(readme_md)
 
 # 运行主函数
 if __name__ == '__main__':
