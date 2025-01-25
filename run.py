@@ -111,18 +111,17 @@ def find_pocs(data, temp_directory, links):
                             content = f.read()
                     except:
                         continue
-                    print(file_path)
                     if re.search('from\s+pocsuite3\.api\s+import\s+.*register_poc', content, re.S):
-                        if poc_validate(file_path):
-                            if file not in data.get(link, {}):
-                                data.setdefault(link, {})
-                                data[link][file] = time.strftime(
-                                    "%Y-%m-%d %H:%M:%S")
-                                os.makedirs(os.path.join(
-                                    current_path, 'poc'), exist_ok=True)
-                                shutil.copy2(file_path, os.path.join(
-                                    current_path, 'poc'))
-                                commit_push(f"from {link}")
+                        if file not in data.get(link, {}) and poc_validate(file_path):
+                            print(file)
+                            data.setdefault(link, {})
+                            data[link][file] = time.strftime(
+                                "%Y-%m-%d %H:%M:%S")
+                            os.makedirs(os.path.join(
+                                current_path, 'poc'), exist_ok=True)
+                            shutil.copy2(file_path, os.path.join(
+                                current_path, 'poc'))
+                            commit_push(f"from {link}")
 
 
 async def clone_github_project(link, save_directory):
