@@ -1001,5 +1001,24 @@
     },
     "https://github.com/ScarlettDefender/poc": {
         "CVE-2022-28512.py": "2025-01-25 18:02:13"
+    },
+    "https://github.com/zjj1002/aws-cloud-cmdb-system": {
+        "hikvision-2013-4976_web_login-bypass.py": "2025-01-25 18:02:41",
+        "iis-ms15-034_7_rce.py": "2025-01-25 18:02:41",
+        "iis-shortname_6_disclosure.py": "2025-01-25 18:02:41",
+        "memcached_all_unauthorized.py": "2025-01-25 18:02:41",
+        "poc.py": "2025-01-25 18:02:41",
+        "redis_all_unauthorized.py": "2025-01-25 18:02:41",
+        "redis_unauthorized_access.py": "2025-01-25 18:02:41",
+        "snmp_v2_unauthorized.py": "2025-01-25 18:02:41",
+        "solr_8.3.1_rce.py": "2025-01-25 18:02:41",
+        "supervisord-2017-11610_3_rce.py": "2025-01-25 18:02:41",
+        "weblogic-async-2019-2725_all_rce.py": "2025-01-25 18:02:41",
+        "weblogic-ssrf_all_ssrf.py": "2025-01-25 18:02:41",
+        "weblogic-vul-check_all_rce.py": "2025-01-25 18:02:41",
+        "weblogic-wls-2017-10271_all_rce.py": "2025-01-25 18:02:41",
+        "webmin_1.92_rce.py": "2025-01-25 18:02:41",
+        "windows-ms14-066_all_rce.py": "2025-01-25 18:02:41",
+        "zookeeper_all_unauthorized.py": "2025-01-25 18:02:41"
     }
 }

@@ -74,5 +74,4 @@ class TestPOC(POCBase):
             output.fail('not vulnerability')
         return output
 
-
 register_poc(TestPOC)
