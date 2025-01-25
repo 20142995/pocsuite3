@@ -1101,5 +1101,33 @@
     },
     "https://github.com/jiuwumengzhu/note": {
         "_2021_typecho_unserialize_getshell_new.py": "2025-01-25 18:04:28"
+    },
+    "https://github.com/hanc00l/some_pocsuite": {
+        "f5-CVE-2020-5902_all_rce.py": "2025-01-25 18:04:36",
+        "flink-CVE-2020-17518_1.11.2_rce.py": "2025-01-25 18:04:36",
+        "flink-CVE-2020-17519_1.11.2_fileread.py": "2025-01-25 18:04:36",
+        "gitlab-upload-2021-22205_13.10.2_rce.py": "2025-01-25 18:04:36",
+        "hikvision-2013-4976_web_login-bypass.py": "2025-01-25 18:04:36",
+        "iis-ms15-034_7_rce.py": "2025-01-25 18:04:36",
+        "iis-shortname_6_disclosure.py": "2025-01-25 18:04:36",
+        "memcached_all_unauthorized.py": "2025-01-25 18:04:36",
+        "rdp-2019-0708_all_rce.py": "2025-01-25 18:04:36",
+        "rdp-ms12-020_all_rce.py": "2025-01-25 18:04:36",
+        "redis_all_unauthorized.py": "2025-01-25 18:04:36",
+        "snmp_v2_unauthorized.py": "2025-01-25 18:04:36",
+        "solr_8.3.1_rce.py": "2025-01-25 18:04:36",
+        "springboot-actuator_all_unauthorized.py": "2025-01-25 18:04:36",
+        "supervisord-2017-11610_3_rce.py": "2025-01-25 18:04:36",
+        "tomcat-ajp-ghostcat_all_lfi.py": "2025-01-25 18:04:36",
+        "vmware-vcenter-FileUpload_CVE-2021-22005_rce.py": "2025-01-25 18:04:36",
+        "weblogic-async-2019-2725_all_rce.py": "2025-01-25 18:04:36",
+        "weblogic-console-2020-14882_all_rce.py": "2025-01-25 18:04:36",
+        "weblogic-iiop-2020-2551_all_rce.py": "2025-01-25 18:04:36",
+        "weblogic-ssrf_all_ssrf.py": "2025-01-25 18:04:36",
+        "weblogic-vul-check_all_rce.py": "2025-01-25 18:04:36",
+        "weblogic-wls-2017-10271_all_rce.py": "2025-01-25 18:04:36",
+        "webmin_1.92_rce.py": "2025-01-25 18:04:36",
+        "windows-ms14-066_all_rce.py": "2025-01-25 18:04:36",
+        "zookeeper_all_unauthorized.py": "2025-01-25 18:04:36"
     }
 }
