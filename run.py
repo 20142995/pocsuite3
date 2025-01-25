@@ -63,7 +63,7 @@ def search_projects(keyword):
 def poc_validate(file_path):
 
     try:
-        command = ["pocsuite", "-r", file_path]
+        command = ["pocsuite", "-r", file_path, "--options"]
         print(" ".join(command))
         output = subprocess.check_output(
             command, shell=True, stderr=subprocess.STDOUT, stdin=subprocess.DEVNULL,universal_newlines=True, encoding='utf8',timeout=5)
@@ -158,7 +158,6 @@ async def main():
     keyword = 'pocsuite3'
     links_2 = search_projects(keyword)
     links = list(set(links_1 + links_2))
-    print(links)
 
     if 'https://github.com/20142995/pocsuite3' in links:
         links.remove('https://github.com/20142995/pocsuite3')
