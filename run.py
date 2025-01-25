@@ -111,17 +111,17 @@ def find_pocs(json_file_path, data, temp_directory, links):
                             content = f.read()
                     except:
                         continue
-                    if re.search('from\s+pocsuite3\.api\s+import\s+.*register_poc', content, re.S):
+                    if re.search('from\s+pocsuite3\.api\s+import\s+.*class\s+\w+\(POCBase)\:.*def\s+_verify\(self\).*', content, re.S):
                         if file not in data.get(link, {}):
-                            if poc_validate(file_path):
-                                print(file)
-                                data.setdefault(link, {})
-                                data[link][file] = time.strftime(
-                                    "%Y-%m-%d %H:%M:%S")
-                                os.makedirs(os.path.join(
-                                    current_path, 'poc'), exist_ok=True)
-                                shutil.copy2(file_path, os.path.join(
-                                    current_path, 'poc'))
+                            # if poc_validate(file_path):
+                            print(file)
+                            data.setdefault(link, {})
+                            data[link][file] = time.strftime(
+                                "%Y-%m-%d %H:%M:%S")
+                            os.makedirs(os.path.join(
+                                current_path, 'poc'), exist_ok=True)
+                            shutil.copy2(file_path, os.path.join(
+                                current_path, 'poc'))
                           
         write_json(json_file_path, data=data)
         commit_push(f"add from {link}")
