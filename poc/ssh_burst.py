@@ -74,9 +74,9 @@ class DemoPOC(POCBase):
 
 
 def get_word_list():
-    common_username = ('ssh', 'test', 'root', 'guest', 'admin', 'daemon', 'user')
-    with open(paths.WEAK_PASS) as f:
-        return itertools.product(common_username, f)
+    with open(paths.SSH_USER) as username:
+        with open(paths.SSH_PASS) as password:
+            return itertools.product(username, password)
 
 
 def port_check(host, port=22):
@@ -105,7 +105,7 @@ def ssh_login(host, port, username, password):
     return ret
 
 
-def task_init(host, port, task_queue, reqult_queue):
+def task_init(host, port, task_queue, result_queue):
     for username, password in get_word_list():
         task_queue.put((host, port, username.strip(), password.strip()))
 
@@ -113,8 +113,8 @@ def task_init(host, port, task_queue, reqult_queue):
 def task_thread(task_queue, result_queue):
     while not task_queue.empty():
         host, port, username, password = task_queue.get()
-        logger.info('try burst {}:{} use username:{} password:{}'.format(
-            host, port, username, password))
+        # logger.info('try burst {}:{} use username:{} password:{}'.format(
+        #     host, port, username, password))
         if ssh_login(host, port, username, password):
             with task_queue.mutex:
                 task_queue.queue.clear()
