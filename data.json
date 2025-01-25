@@ -1129,5 +1129,31 @@
         "webmin_1.92_rce.py": "2025-01-25 18:04:36",
         "windows-ms14-066_all_rce.py": "2025-01-25 18:04:36",
         "zookeeper_all_unauthorized.py": "2025-01-25 18:04:36"
+    },
+    "https://github.com/shadowsock5/Poc": {
+        "Confluence_poc.py": "2025-01-25 18:04:54",
+        "Docker_remote_api_unauth.py": "2025-01-25 18:04:54",
+        "Jenkins_CVE_2019_1003000.py": "2025-01-25 18:04:54",
+        "Jenkins_poc.py": "2025-01-25 18:04:54",
+        "Jira_poc.py": "2025-01-25 18:04:54",
+        "CVE-2020-11753.py": "2025-01-25 18:04:54",
+        "Nexus_CVE_2018_16621.py": "2025-01-25 18:04:54",
+        "Nexus_CVE_2020_10199.py": "2025-01-25 18:04:54",
+        "Nexus_CVE_2020_10204.py": "2025-01-25 18:04:54",
+        "Nexus_poc.py": "2025-01-25 18:04:54",
+        "PeopleSoft_allinone.py": "2025-01-25 18:04:54",
+        "Solr_CVE_2019_0192.py": "2025-01-25 18:04:54",
+        "Solr_CVE_2019_0193.py": "2025-01-25 18:04:54",
+        "Solr_CVE_2019_12409.py": "2025-01-25 18:04:54",
+        "Solr_CVE_2019_17558.py": "2025-01-25 18:04:54",
+        "Solr_file_read_CVE_2021_0day.py": "2025-01-25 18:04:54",
+        "Solr_poc.py": "2025-01-25 18:04:54",
+        "elasticsearch_unauthorized_access.py": "2025-01-25 18:04:54",
+        "HTTP_unauth.py": "2025-01-25 18:04:54",
+        "influxdb_unauthorized_access.py": "2025-01-25 18:04:54",
+        "nfs_unauthorized_access.py": "2025-01-25 18:04:54",
+        "Socks_unauth.py": "2025-01-25 18:04:54",
+        "vnc_unauthorized_access.py": "2025-01-25 18:04:54",
+        "VMware_RCE_CVE_2021_21972.py": "2025-01-25 18:04:54"
     }
 }
