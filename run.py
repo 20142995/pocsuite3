@@ -114,7 +114,7 @@ def commit_push(msg):
 
 def find_pocs(json_file_path, data, temp_directory, links):
     """查找poc"""
-    file_names = {name:data[link][name] for name in data[link] for link in data}
+    file_names = {name:data[link][name] for link in data for name in data[link]}
     for link in links:
         for root, _, files in os.walk(os.path.join(temp_directory, md5(link))):
             for file in files:
