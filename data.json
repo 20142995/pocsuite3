@@ -1478,7 +1478,8 @@
         "致远OA_A6_config.jsp_敏感信息泄漏.py": "2025-01-25 18:40:05",
         "致远OA_getSessionList.jsp_Session泄漏.py": "2025-01-25 18:40:05",
         "致远OA_webmail.do_任意文件下载.py": "2025-01-25 18:40:05",
-        "致远OA_帆软组件_ReportServer_目录遍历.py": "2025-01-25 18:40:05"
+        "致远OA_帆软组件_ReportServer_目录遍历.py": "2025-01-25 18:40:05",
+        "e-cology9-FileDownLoadcationSQL.py": "2025-02-21 03:15:37"
     },
     "https://github.com/xuxuzhouzhou/thinkphp5-rce": {
         "1Business.py": "2025-01-25 18:40:12",
